@@ -33,7 +33,6 @@ This mechanism provides a powerful way to implement human-in-the-loop workflows,
 
 Each snapshot includes the `runId`, input, step status (`success`, `suspended`, etc.), any suspend and resume payloads, and the final output. This ensures full context is available when resuming execution.
 
-
 ```json
 {
   "runId": "34904c14-e79e-4a12-9804-9655d4616c50",
@@ -248,3 +247,5 @@ if (result.status === "suspended") {
 - [Suspend and resume](../../docs/workflows/suspend-and-resume.mdx)
 - [Human in the loop example](../../examples/workflows/human-in-the-loop.mdx)
 - [WorkflowRun.watch()](../../reference/workflows/run-methods/watch.mdx)
+
+

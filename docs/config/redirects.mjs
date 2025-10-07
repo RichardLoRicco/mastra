@@ -690,7 +690,7 @@ export const redirectList = [
   },
   {
     source: "/:locale/reference/workflows/snapshots",
-    destination: "/:locale/docs/server-db/snapshots",
+    destination: "/:locale/docs/workflows/snapshots",
     permanent: true,
   },
   {
@@ -1018,6 +1018,11 @@ export const redirectList = [
   {
     source: "/:locale/reference/cli/mcp-docs-server",
     destination: "/:locale/docs/getting-started/mcp-docs-server",
+    permanent: true,
+  },
+  {
+    source: "/:locale/docs/server-db/snapshots",
+    destination: "/:locale/docs/workflows/snapshots",
     permanent: true,
   },
   {
