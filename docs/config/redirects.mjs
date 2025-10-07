@@ -1020,4 +1020,9 @@ export const redirectList = [
     destination: "/:locale/docs/getting-started/mcp-docs-server",
     permanent: true,
   },
+  {
+    source: "/:locale/examples/agents/using-a-tool",
+    destination: "/:locale/agents/using-tools-and-mcp#adding-tools-to-an-agent",
+    permanent: true,
+  }
 ];
