@@ -1,10 +1,9 @@
 const meta = {
   overview: "Overview",
-  "server-deployment": "Server deployment",
-  monorepo: "With a Monorepo",
-  "web-framework": "With a Web Framework",
-  "serverless-platforms": "Serverless Platforms",
+  "server-deployment": "Building Mastra",
   "cloud-providers": "Cloud Providers",
+  frameworks: "Frameworks",
+  monorepo: "With a Monorepo",
 };
 
 export default meta;

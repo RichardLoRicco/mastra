@@ -1,32 +1,32 @@
 ---
 title: "Cloud Providers"
-description: "Deploy your Mastra applications to popular cloud providers."
+description: "Deploy your Mastra applications to popular cloud providers and serverless platforms."
 ---
+
+# Cloud Providers
+
+Choose your deployment target from the available cloud providers and serverless platforms.
+
+## Serverless Platforms
+
+- [Cloudflare](/docs/deployment/cloud-providers/cloudflare-deployer)
+- [Netlify](/docs/deployment/cloud-providers/netlify-deployer)
+- [Vercel](/docs/deployment/cloud-providers/vercel-deployer)
 
 ## Cloud Providers
 
-Standalone Mastra applications can be deployed to popular cloud providers, see one of the following guides for more information:
-
 - [Amazon EC2](/docs/deployment/cloud-providers/amazon-ec2)
 - [AWS Lambda](/docs/deployment/cloud-providers/aws-lambda)
-- [Digital Ocean](/docs/deployment/cloud-providers/digital-ocean)
 - [Azure App Services](/docs/deployment/cloud-providers/azure-app-services)
-
-For self-hosted Node.js server deployment, see the [Creating A Mastra Server](/docs/deployment/server) guide.
+- [Digital Ocean](/docs/deployment/cloud-providers/digital-ocean)
 
 ## Prerequisites
 
-Before deploying to a cloud provider, ensure you have:
-
-- A [Mastra application](/docs/getting-started/installation)
 - Node.js `v20.0` or higher
-- A GitHub repository for your application (required for most CI/CD setups)
-- Domain name management access (for SSL and HTTPS)
-- Basic familiarity with server setup (e.g. Nginx, environment variables)
 
 ## LibSQLStore
 
-`LibSQLStore` writes to the local filesystem, which is not supported in cloud environments that use ephemeral file systems. If you're deploying to platforms like **AWS Lambda**, **Azure App Services**, or **Digital Ocean App Platform**, you **must remove** all usage of `LibSQLStore`.
+`LibSQLStore` writes to the local filesystem, which is not supported in cloud and serverless environments due to their ephemeral nature. You **must remove** all usage of `LibSQLStore`.
 
 Specifically, ensure you've removed it from both `src/mastra/index.ts` and `src/mastra/agents/weather-agent.ts`:
 

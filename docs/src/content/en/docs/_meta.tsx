@@ -24,7 +24,6 @@ const meta = {
   scorers: <Tag text="experimental">Scorers</Tag>,
   auth: <Tag text="experimental">Auth</Tag>,
   voice: { title: "Voice" },
-  frameworks: { title: "Frameworks" },
   community: "Community",
 };
 

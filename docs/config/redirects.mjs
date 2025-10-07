@@ -96,11 +96,6 @@ export const redirectList = [
     permanent: true,
   },
   {
-    source: "/:locale/docs/frameworks/express",
-    destination: "/:locale/docs/frameworks/servers/express",
-    permanent: true,
-  },
-  {
     source: "/:locale/docs/frameworks/vite-react",
     destination: "/:locale/docs/frameworks/web-frameworks/vite-react",
     permanent: true,
@@ -1033,6 +1028,96 @@ export const redirectList = [
   {
     source: "/:locale/examples/agents/using-a-workflow",
     destination: "/:locale/docs/workflows/using-with-agents-and-tools#adding-an-agent-as-a-step",
+    permanent: true,
+  },
+  {
+    source: "/:locale/docs/frameworks/web-frameworks/next-js",
+    destination: "/:locale/docs/deployment/frameworks/web-frameworks/next-js",
+    permanent: true,
+  },
+  {
+    source: "/:locale/docs/frameworks/web-frameworks/astro",
+    destination: "/:locale/docs/deployment/frameworks/web-frameworks/astro",
+    permanent: true,
+  },
+  {
+    source: "/:locale/docs/frameworks/web-frameworks/vite-react",
+    destination: "/:locale/docs/deployment/frameworks/web-frameworks/vite-react",
+    permanent: true,
+  },
+  {
+    source: "/:locale/docs/frameworks/web-frameworks/sveltekit",
+    destination: "/:locale/docs/deployment/frameworks/web-frameworks/sveltekit",
+    permanent: true,
+  },
+  {
+    source: "/:locale/docs/frameworks/web-frameworks",
+    destination: "/:locale/docs/deployment/frameworks/web-frameworks",
+    permanent: true,
+  },
+  {
+    source: "/:locale/docs/frameworks/agentic-uis",
+    destination: "/:locale/docs/deployment/frameworks/agentic-uis",
+    permanent: true,
+  },
+  {
+    source: "/:locale/docs/deployment/serverless-platforms",
+    destination: "/:locale/docs/deployment/cloud-providers",
+    permanent: true,
+  },
+  {
+    source: "/:locale/docs/deployment/web-framework",
+    destination: "/:locale/docs/deployment/frameworks/web-frameworks",
+    permanent: true,
+  },
+  {
+    source: "/:locale/docs/frameworks/agentic-uis/ai-sdk",
+    destination: "/:locale/docs/deployment/frameworks/agentic-uis/ai-sdk",
+    permanent: true,
+  },
+  {
+    source: "/:locale/docs/frameworks/agentic-uis/assistant-ui",
+    destination: "/:locale/docs/deployment/frameworks/agentic-uis/assistant-ui",
+    permanent: true,
+  },
+  {
+    source: "/:locale/docs/frameworks/agentic-uis/cedar-os",
+    destination: "/:locale/docs/deployment/frameworks/agentic-uis/cedar-os",
+    permanent: true,
+  },
+  {
+    source: "/:locale/docs/frameworks/agentic-uis/copilotkit",
+    destination: "/:locale/docs/deployment/frameworks/agentic-uis/copilotkit",
+    permanent: true,
+  },
+  {
+    source: "/:locale/docs/frameworks/agentic-uis/openrouter",
+    destination: "/:locale/docs/deployment/frameworks/agentic-uis/openrouter",
+    permanent: true,
+  },
+  {
+    source: "/:locale/docs/frameworks/servers/express",
+    destination: "/:locale/docs/deployment/frameworks/web-frameworks/express",
+    permanent: true,
+  },
+  {
+    source: "/:locale/docs/frameworks/web-frameworks/next-js",
+    destination: "/:locale/docs/deployment/frameworks/web-frameworks/next-js",
+    permanent: true,
+  },
+  {
+    source: "/:locale/docs/frameworks/web-frameworks/astro",
+    destination: "/:locale/docs/deployment/frameworks/web-frameworks/astro",
+    permanent: true,
+  },
+  {
+    source: "/:locale/docs/frameworks/web-frameworks/vite-react",
+    destination: "/:locale/docs/deployment/frameworks/web-frameworks/vite-react",
+    permanent: true,
+  },
+  {
+    source: "/:locale/docs/frameworks/web-frameworks/sveltekit",
+    destination: "/:locale/docs/deployment/frameworks/web-frameworks/sveltekit",
     permanent: true,
   },
 ];
