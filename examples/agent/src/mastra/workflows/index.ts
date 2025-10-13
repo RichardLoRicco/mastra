@@ -1,8 +1,8 @@
 import { createStep, createWorkflow } from '@mastra/core/workflows';
 import { z } from 'zod';
 
-export const myWorkflow = createWorkflow({
-  id: 'recipe-maker',
+export const workflowRecipeMaker = createWorkflow({
+  id: 'workflow-recipe-maker',
   description: 'Returns a recipe based on an ingredient',
   inputSchema: z.object({
     ingredient: z.string(),
@@ -46,4 +46,4 @@ const step2 = createStep({
   },
 });
 
-myWorkflow.then(step).then(step2).commit();
+workflowRecipeMaker.then(step).then(step2).commit();
