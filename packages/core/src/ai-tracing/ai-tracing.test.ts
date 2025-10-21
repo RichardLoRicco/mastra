@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { MastraError } from '../error';
+import { RuntimeContext } from '../runtime-context';
 import { clearAITracingRegistry } from './registry';
 import { DefaultAITracing } from './tracers';
 import type { AITracingEvent, AITracingExporter, LLMGenerationAttributes, AITracing, ExportedAISpan } from './types';
@@ -966,8 +967,6 @@ describe('AI Tracing', () => {
 
   describe('TraceState and metadata extraction from RuntimeContext', () => {
     it('should extract metadata from RuntimeContext using configured keys', () => {
-      const { RuntimeContext } = require('../runtime-context');
-
       // Create AI tracing with configured metadata keys
       const aiTracing = new DefaultAITracing({
         serviceName: 'test-service',
@@ -1002,8 +1001,6 @@ describe('AI Tracing', () => {
     });
 
     it('should merge configured keys with per-request keys', () => {
-      const { RuntimeContext } = require('../runtime-context');
-
       const aiTracing = new DefaultAITracing({
         serviceName: 'test-service',
         name: 'test',
@@ -1039,8 +1036,6 @@ describe('AI Tracing', () => {
     });
 
     it('should support nested value extraction using dot notation', () => {
-      const { RuntimeContext } = require('../runtime-context');
-
       const aiTracing = new DefaultAITracing({
         serviceName: 'test-service',
         name: 'test',
@@ -1071,8 +1066,6 @@ describe('AI Tracing', () => {
     });
 
     it('should inherit TraceState in child spans', () => {
-      const { RuntimeContext } = require('../runtime-context');
-
       const aiTracing = new DefaultAITracing({
         serviceName: 'test-service',
         name: 'test',
@@ -1111,8 +1104,6 @@ describe('AI Tracing', () => {
     });
 
     it('should prioritize explicit metadata over extracted metadata', () => {
-      const { RuntimeContext } = require('../runtime-context');
-
       const aiTracing = new DefaultAITracing({
         serviceName: 'test-service',
         name: 'test',
@@ -1169,8 +1160,6 @@ describe('AI Tracing', () => {
     });
 
     it('should skip undefined values in RuntimeContext', () => {
-      const { RuntimeContext } = require('../runtime-context');
-
       const aiTracing = new DefaultAITracing({
         serviceName: 'test-service',
         name: 'test',
