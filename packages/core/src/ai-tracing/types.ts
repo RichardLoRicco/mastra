@@ -331,6 +331,8 @@ export interface AISpan<TType extends AISpanType> extends BaseSpan<TType> {
   parent?: AnyAISpan;
   /** Pointer to the AITracing instance */
   aiTracing: AITracing;
+  /** Trace-level state shared across all spans in this trace */
+  traceState?: TraceState;
 
   // Methods for span lifecycle
   /** End the span */
@@ -457,6 +459,8 @@ export interface CreateSpanOptions<TType extends AISpanType> extends CreateBaseO
   parent?: AnyAISpan;
   /** Is an event span? */
   isEvent?: boolean;
+  /** Trace-level state shared across all spans in this trace */
+  traceState?: TraceState;
 }
 
 /**
@@ -467,6 +471,10 @@ export interface StartSpanOptions<TType extends AISpanType> extends CreateSpanOp
    * Options passed when using a custom sampler strategy
    */
   customSamplerOptions?: CustomSamplerOptions;
+  /** Tracing options for this execution */
+  tracingOptions?: TracingOptions;
+  /** Runtime context for metadata extraction */
+  runtimeContext?: RuntimeContext;
 }
 
 /**
@@ -553,11 +561,30 @@ export interface TracingPolicy {
 }
 
 /**
+ * Trace-level state computed once at the start of a trace
+ * and shared by all spans within that trace.
+ */
+export interface TraceState {
+  /**
+   * RuntimeContext keys to extract as metadata for all spans in this trace.
+   * Computed by merging the tracing config's metadataFromRuntimeContext
+   * with the per-request runtimeContextKeys.
+   */
+  runtimeContextKeys: string[];
+}
+
+/**
  * Options passed when starting a new agent or workflow execution
  */
 export interface TracingOptions {
   /** Metadata to add to the root trace span */
   metadata?: Record<string, any>;
+  /**
+   * Additional RuntimeContext keys to extract as metadata for this trace.
+   * These keys are added to the metadataFromRuntimeContext config.
+   * Supports dot notation for nested values (e.g., 'user.id', 'session.data.experimentId').
+   */
+  runtimeContextKeys?: string[];
 }
 
 /**
@@ -596,6 +623,12 @@ export interface TracingConfig {
   processors?: AISpanProcessor[];
   /** Set to `true` if you want to see spans internal to the operation of mastra */
   includeInternalSpans?: boolean;
+  /**
+   * RuntimeContext keys to automatically extract as metadata for all spans
+   * created with this tracing configuration.
+   * Supports dot notation for nested values.
+   */
+  metadataFromRuntimeContext?: string[];
 }
 
 /**

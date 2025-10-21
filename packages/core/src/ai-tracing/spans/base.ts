@@ -10,6 +10,7 @@ import type {
   CreateSpanOptions,
   AITracing,
   ExportedAISpan,
+  TraceState,
 } from '../types';
 
 import { AISpanType, InternalSpans } from '../types';
@@ -78,6 +79,7 @@ export abstract class BaseAISpan<TType extends AISpanType = any> implements AISp
     details?: Record<string, any>;
   };
   public metadata?: Record<string, any>;
+  public traceState?: TraceState;
 
   constructor(options: CreateSpanOptions<TType>, aiTracing: AITracing) {
     this.name = options.name;
@@ -89,6 +91,7 @@ export abstract class BaseAISpan<TType extends AISpanType = any> implements AISp
     this.aiTracing = aiTracing;
     this.isEvent = options.isEvent ?? false;
     this.isInternal = isSpanInternal(this.type, options.tracingPolicy?.internal);
+    this.traceState = options.traceState;
 
     if (this.isEvent) {
       // Event spans don't have endTime or input.
