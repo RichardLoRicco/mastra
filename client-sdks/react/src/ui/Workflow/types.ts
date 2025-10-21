@@ -17,7 +17,7 @@ export type WorkflowNode = Node<
     type?: StepMetadataType;
     nestedWorkflowNodes?: { nodes: WorkflowNode[]; edges: Edge[] };
   },
-  'isLastStep' | 'stepRun' | 'step' | 'type' | 'parentNodes' | 'type' | 'nestedWorkflowNodes'
+  'default' | 'group'
 >;
 
 export type StepMetadataType = 'conditional' | 'parallel';

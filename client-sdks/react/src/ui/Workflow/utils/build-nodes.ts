@@ -35,7 +35,7 @@ const workflowStepToNode = ({
       type,
       nestedWorkflowNodes,
     },
-    type: 'step',
+    type: 'default',
   };
 };
 
