@@ -971,7 +971,7 @@ describe('AI Tracing', () => {
       const aiTracing = new DefaultAITracing({
         serviceName: 'test-service',
         name: 'test',
-        metadataFromRuntimeContext: ['userId', 'environment'],
+        runtimeContextKeys: ['userId', 'environment'],
         exporters: [testExporter],
       });
 
@@ -1004,7 +1004,7 @@ describe('AI Tracing', () => {
       const aiTracing = new DefaultAITracing({
         serviceName: 'test-service',
         name: 'test',
-        metadataFromRuntimeContext: ['userId', 'environment'],
+        runtimeContextKeys: ['userId', 'environment'],
         exporters: [testExporter],
       });
 
@@ -1039,7 +1039,7 @@ describe('AI Tracing', () => {
       const aiTracing = new DefaultAITracing({
         serviceName: 'test-service',
         name: 'test',
-        metadataFromRuntimeContext: ['user.id', 'session.data.experimentId'],
+        runtimeContextKeys: ['user.id', 'session.data.experimentId'],
         exporters: [testExporter],
       });
 
@@ -1069,7 +1069,7 @@ describe('AI Tracing', () => {
       const aiTracing = new DefaultAITracing({
         serviceName: 'test-service',
         name: 'test',
-        metadataFromRuntimeContext: ['userId'],
+        runtimeContextKeys: ['userId'],
         exporters: [testExporter],
       });
 
@@ -1107,7 +1107,7 @@ describe('AI Tracing', () => {
       const aiTracing = new DefaultAITracing({
         serviceName: 'test-service',
         name: 'test',
-        metadataFromRuntimeContext: ['userId', 'sessionId'],
+        runtimeContextKeys: ['userId', 'sessionId'],
         exporters: [testExporter],
       });
 
@@ -1169,7 +1169,7 @@ describe('AI Tracing', () => {
       const aiTracing = new DefaultAITracing({
         serviceName: 'test-service',
         name: 'test',
-        metadataFromRuntimeContext: ['userId'],
+        runtimeContextKeys: ['userId'],
         exporters: [testExporter],
       });
 
@@ -1202,7 +1202,7 @@ describe('AI Tracing', () => {
       const aiTracing = new DefaultAITracing({
         serviceName: 'test-service',
         name: 'test',
-        metadataFromRuntimeContext: ['userId'],
+        runtimeContextKeys: ['userId'],
         exporters: [testExporter],
       });
 
@@ -1225,7 +1225,7 @@ describe('AI Tracing', () => {
       const aiTracing = new DefaultAITracing({
         serviceName: 'test-service',
         name: 'test',
-        metadataFromRuntimeContext: ['userId', 'missingKey'],
+        runtimeContextKeys: ['userId', 'missingKey'],
         exporters: [testExporter],
       });
 

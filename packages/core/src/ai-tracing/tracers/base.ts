@@ -49,7 +49,7 @@ export abstract class BaseAITracing extends MastraBase implements AITracing {
       exporters: config.exporters ?? [],
       processors: config.processors ?? [],
       includeInternalSpans: config.includeInternalSpans ?? false,
-      metadataFromRuntimeContext: config.metadataFromRuntimeContext ?? [],
+      runtimeContextKeys: config.runtimeContextKeys ?? [],
     };
   }
 
@@ -250,7 +250,7 @@ export abstract class BaseAITracing extends MastraBase implements AITracing {
    * Compute TraceState for a new trace based on configured and per-request keys
    */
   protected computeTraceState(tracingOptions?: TracingOptions): TraceState | undefined {
-    const configuredKeys = this.config.metadataFromRuntimeContext ?? [];
+    const configuredKeys = this.config.runtimeContextKeys ?? [];
     const additionalKeys = tracingOptions?.runtimeContextKeys ?? [];
 
     // Merge: configured + additional
@@ -299,7 +299,7 @@ export abstract class BaseAITracing extends MastraBase implements AITracing {
     for (const key of keys) {
       // Handle dot notation: get first part from RuntimeContext, then navigate nested properties
       const parts = key.split('.');
-      const rootKey = parts[0];
+      const rootKey = parts[0]!; // parts[0] always exists since key is a non-empty string
       const value = runtimeContext.get(rootKey);
 
       if (value !== undefined) {

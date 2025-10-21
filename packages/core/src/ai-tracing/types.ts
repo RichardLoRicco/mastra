@@ -567,7 +567,7 @@ export interface TracingPolicy {
 export interface TraceState {
   /**
    * RuntimeContext keys to extract as metadata for all spans in this trace.
-   * Computed by merging the tracing config's metadataFromRuntimeContext
+   * Computed by merging the tracing config's runtimeContextKeys
    * with the per-request runtimeContextKeys.
    */
   runtimeContextKeys: string[];
@@ -581,7 +581,7 @@ export interface TracingOptions {
   metadata?: Record<string, any>;
   /**
    * Additional RuntimeContext keys to extract as metadata for this trace.
-   * These keys are added to the metadataFromRuntimeContext config.
+   * These keys are added to the runtimeContextKeys config.
    * Supports dot notation for nested values (e.g., 'user.id', 'session.data.experimentId').
    */
   runtimeContextKeys?: string[];
@@ -628,7 +628,7 @@ export interface TracingConfig {
    * created with this tracing configuration.
    * Supports dot notation for nested values.
    */
-  metadataFromRuntimeContext?: string[];
+  runtimeContextKeys?: string[];
 }
 
 /**
