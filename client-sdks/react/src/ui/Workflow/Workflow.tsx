@@ -1,20 +1,11 @@
-import {
-  applyEdgeChanges,
-  applyNodeChanges,
-  Background,
-  Controls,
-  Edge,
-  EdgeChange,
-  NodeChange,
-  NodeTypes,
-  ReactFlow,
-} from '@xyflow/react';
-import { useState, useCallback, useEffect } from 'react';
+import { Background, Controls, Edge, NodeTypes, ReactFlow, useEdgesState, useNodesState } from '@xyflow/react';
+import { useEffect } from 'react';
 import { DefaultNode } from './custom-nodes';
 import { WorkflowStreamResult } from '@mastra/core/workflows';
 import { GetWorkflowResponse } from '@mastra/client-js';
 import { buildNodes } from './utils/build-nodes';
 import { WorkflowNode } from './types';
+import { positionWorkflowNodes } from './utils/position-nodes';
 
 export const DefaultNodeTypes: NodeTypes = {
   default: DefaultNode,
@@ -27,28 +18,16 @@ export interface WorkflowProps {
 }
 
 export const Workflow = ({ nodeTypes = DefaultNodeTypes, workflowResult, workflow }: WorkflowProps) => {
-  const [{ nodes, edges }, setNodes] = useState(() => buildNodes(workflow.stepGraph, workflowResult));
+  const [nodes, setNodes, onNodesChange] = useNodesState<WorkflowNode>([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
 
   useEffect(() => {
-    setNodes(buildNodes(workflow.stepGraph, workflowResult));
-  }, [workflowResult, workflow.stepGraph]);
+    const nextNodes = buildNodes(workflow.stepGraph, workflowResult);
+    const nextLayoutedNodes = positionWorkflowNodes(nextNodes.nodes, nextNodes.edges);
 
-  const onNodesChange = useCallback(
-    (changes: NodeChange<WorkflowNode>[]) =>
-      setNodes(nodesSnapshot => ({
-        nodes: applyNodeChanges(changes, nodesSnapshot.nodes),
-        edges: nodesSnapshot.edges,
-      })),
-    [],
-  );
-  const onEdgesChange = useCallback(
-    (changes: EdgeChange<Edge>[]) =>
-      setNodes(nodesSnapshot => ({
-        nodes: nodesSnapshot.nodes,
-        edges: applyEdgeChanges(changes, nodesSnapshot.edges),
-      })),
-    [],
-  );
+    setNodes(nextLayoutedNodes.nodes);
+    setEdges(nextLayoutedNodes.edges);
+  }, [workflowResult, workflow.stepGraph]);
 
   return (
     <ReactFlow

@@ -1,9 +1,7 @@
-import { GetWorkflowResponse } from '@mastra/client-js';
-import { Edge } from '@xyflow/react';
-import { StepMetadataType, WorkflowNode } from '../types';
-import { SerializedStepFlowEntry, WorkflowStreamResult } from '@mastra/core/workflows';
-import { positionWorkflowNodes } from './position-nodes';
-import { StepWithMetadata } from '../types';
+import { MarkerType, type Edge } from '@xyflow/react';
+import { type StepMetadataType, type WorkflowNode } from '../types';
+import { type SerializedStepFlowEntry, type WorkflowStreamResult } from '@mastra/core/workflows';
+import { type StepWithMetadata } from '../types';
 
 type WorkflowStepToNodeArgs = {
   id: string;
@@ -68,9 +66,8 @@ export const buildNodes = (
   }
 
   // Apply positioning to all nodes
-  const positionedNodes = positionWorkflowNodes(nodes, edges);
 
-  return { nodes: positionedNodes, edges };
+  return { nodes, edges };
 };
 
 type CreateStepNodeArgs = {
@@ -202,6 +199,13 @@ const buildEdge = ({ parentNode, node }: BuildEdgeArgs): Edge => {
       stroke: status === 'success' ? 'var(--color-accent1)' : undefined,
       strokeWidth: status === 'success' ? 2 : undefined,
       strokeDasharray: status === 'success' ? undefined : '5 5',
+    },
+    animated: true,
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+      width: 12,
+      height: 12,
+      color: status === 'success' ? 'var(--color-accent1)' : 'var(--color-text1)',
     },
   };
 };

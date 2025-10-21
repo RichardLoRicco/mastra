@@ -1,6 +1,7 @@
 @import 'tailwindcss' prefix(mastra);
 
 :root {
+  --color-text1: #5c5c5c;
   --color-text6: #ffffff;
 
   --color-accent1: #1afb6f;
@@ -24,7 +25,7 @@
 }
 
 @theme {
-  --color-text1: #5c5c5c;
+  --color-text1: var(--color-text1);
   --color-text2: #707070;
   --color-text3: #939393;
   --color-text4: #a9a9a9;
