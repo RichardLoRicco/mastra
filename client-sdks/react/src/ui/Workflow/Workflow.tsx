@@ -27,11 +27,11 @@ export interface WorkflowProps {
 }
 
 export const Workflow = ({ nodeTypes = DefaultNodeTypes, workflowResult, workflow }: WorkflowProps) => {
-  const [{ nodes, edges }, setNodes] = useState(() => buildNodes(workflow, workflowResult));
+  const [{ nodes, edges }, setNodes] = useState(() => buildNodes(workflow.stepGraph, workflowResult));
 
   useEffect(() => {
-    setNodes(buildNodes(workflow, workflowResult));
-  }, [workflowResult, workflow]);
+    setNodes(buildNodes(workflow.stepGraph, workflowResult));
+  }, [workflowResult, workflow.stepGraph]);
 
   const onNodesChange = useCallback(
     (changes: NodeChange<WorkflowNode>[]) =>

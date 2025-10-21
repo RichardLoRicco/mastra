@@ -1,5 +1,5 @@
 import { SerializedStepFlowEntry, WorkflowStreamResult } from '@mastra/core/workflows';
-import { Node } from '@xyflow/react';
+import { Edge, Node } from '@xyflow/react';
 
 export type WorkflowStatusType = 'running' | 'success' | 'failed' | 'suspended' | 'waiting' | 'idle';
 export type WorkflowNode = Node<
@@ -15,8 +15,9 @@ export type WorkflowNode = Node<
     isLastStep: boolean;
 
     type?: StepMetadataType;
+    nestedWorkflowNodes?: { nodes: WorkflowNode[]; edges: Edge[] };
   },
-  'isLastStep' | 'stepRun' | 'step' | 'type' | 'parentNodes' | 'type'
+  'isLastStep' | 'stepRun' | 'step' | 'type' | 'parentNodes' | 'type' | 'nestedWorkflowNodes'
 >;
 
 export type StepMetadataType = 'conditional' | 'parallel';

@@ -14,9 +14,12 @@ export const DefaultNode = ({ data }: NodeProps<WorkflowNode>) => {
   const step = getNodeData(data.step);
   const parentNodes = data.parentNodes;
   const stepRun = data.stepRun;
+  const nestedWorkflowNodes = data.nestedWorkflowNodes;
   const isSuspended = stepRun?.status === 'suspended';
   const hasParent = Boolean(parentNodes && parentNodes?.length > 0);
   const showParentHandleSuccess = parentNodes?.some(node => node.data.stepRun?.status === 'success');
+
+  console.log('loool', nestedWorkflowNodes);
 
   return (
     <StepMetadata type={data.type}>

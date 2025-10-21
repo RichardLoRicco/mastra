@@ -1,7 +1,7 @@
 import { GetWorkflowResponse } from '@mastra/client-js';
 import { Edge } from '@xyflow/react';
 import { StepMetadataType, WorkflowNode } from '../types';
-import { WorkflowStreamResult } from '@mastra/core/workflows';
+import { SerializedStepFlowEntry, WorkflowStreamResult } from '@mastra/core/workflows';
 import { positionWorkflowNodes } from './position-nodes';
 import { StepWithMetadata } from '../types';
 
@@ -12,6 +12,7 @@ type WorkflowStepToNodeArgs = {
   stepRun?: WorkflowStreamResult<any, any, any, any>['steps'][string];
   parentNodes?: WorkflowNode[];
   type?: StepMetadataType;
+  nestedWorkflowNodes?: { nodes: WorkflowNode[]; edges: Edge[] };
 };
 
 const workflowStepToNode = ({
@@ -21,6 +22,7 @@ const workflowStepToNode = ({
   stepRun,
   parentNodes,
   type,
+  nestedWorkflowNodes,
 }: WorkflowStepToNodeArgs): WorkflowNode => {
   return {
     id,
@@ -31,28 +33,32 @@ const workflowStepToNode = ({
       isLastStep: !hasChild,
       parentNodes,
       type,
+      nestedWorkflowNodes,
     },
     type: 'step',
   };
 };
 
-export const buildNodes = (workflow: GetWorkflowResponse, workflowResult: WorkflowStreamResult<any, any, any, any>) => {
+export const buildNodes = (
+  stepGraph: SerializedStepFlowEntry[],
+  workflowResult: WorkflowStreamResult<any, any, any, any>,
+  parentIdForNestedNodes?: string,
+) => {
   const nodes: WorkflowNode[] = [];
   const edges: Edge[] = [];
   let currentParentNodes: WorkflowNode[] = [];
 
-  for (let i = 0; i < workflow.stepGraph.length; i++) {
-    const step = workflow.stepGraph[i];
-    const childStep = workflow.stepGraph[i + 1];
+  for (let i = 0; i < stepGraph.length; i++) {
+    const step = stepGraph[i];
+    const childStep = stepGraph[i + 1];
     const hasChild = Boolean(childStep);
-    const nodeId = String(i);
 
     const { nodes: nodesToAdd, edges: edgesToAdd } = createStepNode({
-      id: nodeId,
       step,
       parentNodes: currentParentNodes,
       hasChild,
       workflowResult,
+      parentIdForNestedNodes,
     });
 
     nodes.push(...nodesToAdd);
@@ -68,20 +74,20 @@ export const buildNodes = (workflow: GetWorkflowResponse, workflowResult: Workfl
 };
 
 type CreateStepNodeArgs = {
-  id: string;
   step: StepWithMetadata;
   hasChild: boolean;
-  workflowResult?: WorkflowStreamResult<any, any, any, any>;
+  workflowResult: WorkflowStreamResult<any, any, any, any>;
   parentNodes?: WorkflowNode[];
   type?: StepMetadataType;
+  parentIdForNestedNodes?: string;
 };
 const createStepNode = ({
-  id,
   step,
   hasChild,
   workflowResult,
   parentNodes,
   type,
+  parentIdForNestedNodes,
 }: CreateStepNodeArgs): { nodes: WorkflowNode[]; edges: Edge[] } => {
   const parents = parentNodes || [];
   const hasParents = parents.length > 0;
@@ -91,13 +97,21 @@ const createStepNode = ({
     case 'foreach':
     case 'loop':
     case 'step': {
+      const id = step.step.id;
+      // We are dealing with the nested workflow ID generation here
+      const adjustedId = parentIdForNestedNodes ? `${parentIdForNestedNodes}.${id}` : id;
+      const adjustedParentId = parentIdForNestedNodes ? parentIdForNestedNodes : id;
+
       const node = workflowStepToNode({
-        id,
+        id: adjustedId,
         step,
         hasChild,
-        stepRun: workflowResult?.steps[step.step.id],
+        stepRun: workflowResult?.steps[adjustedId],
         parentNodes,
         type,
+        nestedWorkflowNodes: step.step.serializedStepFlow
+          ? buildNodes(step.step.serializedStepFlow, workflowResult, adjustedParentId)
+          : undefined,
       });
 
       const edges: Edge[] = [];
@@ -109,6 +123,7 @@ const createStepNode = ({
 
     case 'sleepUntil':
     case 'sleep': {
+      const id = step.id;
       const node = workflowStepToNode({
         id,
         step,
@@ -133,12 +148,12 @@ const createStepNode = ({
 
       step.steps.forEach((subStep, index) => {
         const node = createStepNode({
-          id: `${id}-${index}`,
           step: { ...subStep, condition: step.serializedConditions[index]?.fn },
           parentNodes,
           hasChild,
           workflowResult,
           type: step.type,
+          parentIdForNestedNodes,
         });
 
         nodes.push(...node.nodes);
@@ -152,14 +167,14 @@ const createStepNode = ({
       const nodes: WorkflowNode[] = [];
       const edges: Edge[] = [];
 
-      step.steps.forEach((subStep, index) => {
+      step.steps.forEach(subStep => {
         const node = createStepNode({
-          id: `${id}-${index}`,
           step: subStep,
           parentNodes,
           hasChild,
           workflowResult,
           type: step.type,
+          parentIdForNestedNodes,
         });
 
         nodes.push(...node.nodes);
