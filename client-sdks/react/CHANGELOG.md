@@ -1,5 +1,16 @@
 # @mastra/react-hooks
 
+## 0.0.8-alpha.1
+
+### Patch Changes
+
+- Fix perf issue: removed flush sync ([#9014](https://github.com/mastra-ai/mastra/pull/9014))
+
+- Show agent tool output better in playground ([#9021](https://github.com/mastra-ai/mastra/pull/9021))
+
+- Updated dependencies []:
+  - @mastra/client-js@0.16.2-alpha.1
+
 ## 0.0.8-alpha.0
 
 ### Patch Changes
