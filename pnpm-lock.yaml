@@ -225,8 +225,8 @@ importers:
   client-sdks/ai-sdk:
     dependencies:
       ai:
-        specifier: ^5.0.60
-        version: 5.0.60(zod@3.25.76)
+        specifier: ^5.0.76
+        version: 5.0.76(zod@3.25.76)
     devDependencies:
       '@internal/lint':
         specifier: workspace:*
@@ -339,8 +339,8 @@ importers:
         version: 3.3.1
     devDependencies:
       '@ai-sdk/react':
-        specifier: ^2.0.57
-        version: 2.0.57(react@19.1.1)(zod@4.1.12)
+        specifier: ^2.0.76
+        version: 2.0.76(react@19.1.1)(zod@4.1.12)
       '@assistant-ui/react':
         specifier: ^0.10.45
         version: 0.10.45(@types/react-dom@19.1.9(@types/react@19.1.13))(@types/react@19.1.13)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(use-sync-external-store@1.5.0(react@19.1.1))
@@ -486,7 +486,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/babel__core':
         specifier: ^7.20.5
         version: 7.20.5
@@ -498,7 +498,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -541,7 +541,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/fs-extra':
         specifier: ^11.0.4
         version: 11.0.4
@@ -553,7 +553,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -584,7 +584,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/fs-extra':
         specifier: ^11.0.4
         version: 11.0.4
@@ -596,7 +596,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -782,7 +782,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -791,7 +791,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -816,7 +816,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -825,7 +825,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -840,8 +840,8 @@ importers:
         version: 0.3.72(@opentelemetry/api@1.9.0)(@opentelemetry/exporter-trace-otlp-proto@0.205.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.1.0(@opentelemetry/api@1.9.0))(openai@5.11.0(ws@8.18.3(bufferutil@4.0.9)(utf-8-validate@6.0.3))(zod@3.25.76))
     devDependencies:
       '@ai-sdk/openai':
-        specifier: ^2.0.35
-        version: 2.0.42(zod@3.25.76)
+        specifier: ^2.0.52
+        version: 2.0.53(zod@3.25.76)
       '@internal/lint':
         specifier: workspace:*
         version: link:../../packages/_config
@@ -853,7 +853,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -865,7 +865,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -908,7 +908,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -917,7 +917,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -1047,38 +1047,38 @@ importers:
         specifier: ^1.2.12
         version: 1.2.12(zod@3.25.76)
       '@ai-sdk/anthropic-v5':
-        specifier: npm:@ai-sdk/anthropic@2.0.4
-        version: '@ai-sdk/anthropic@2.0.4(zod@3.25.76)'
+        specifier: npm:@ai-sdk/anthropic@2.0.33
+        version: '@ai-sdk/anthropic@2.0.33(zod@3.25.76)'
       '@ai-sdk/google':
         specifier: ^1.2.22
         version: 1.2.22(zod@3.25.76)
       '@ai-sdk/google-v5':
-        specifier: npm:@ai-sdk/google@2.0.6
-        version: '@ai-sdk/google@2.0.6(zod@3.25.76)'
+        specifier: npm:@ai-sdk/google@2.0.23
+        version: '@ai-sdk/google@2.0.23(zod@3.25.76)'
       '@ai-sdk/groq':
         specifier: ^1.2.9
         version: 1.2.9(zod@3.25.76)
       '@ai-sdk/groq-v5':
-        specifier: npm:@ai-sdk/groq@2.0.10
-        version: '@ai-sdk/groq@2.0.10(zod@3.25.76)'
+        specifier: npm:@ai-sdk/groq@2.0.24
+        version: '@ai-sdk/groq@2.0.24(zod@3.25.76)'
       '@ai-sdk/openai':
         specifier: ^1.3.24
         version: 1.3.24(zod@3.25.76)
       '@ai-sdk/openai-v5':
-        specifier: npm:@ai-sdk/openai@2.0.42
-        version: '@ai-sdk/openai@2.0.42(zod@3.25.76)'
+        specifier: npm:@ai-sdk/openai@2.0.52
+        version: '@ai-sdk/openai@2.0.52(zod@3.25.76)'
       '@ai-sdk/xai':
         specifier: ^1.2.18
         version: 1.2.18(zod@3.25.76)
       '@ai-sdk/xai-v5':
-        specifier: npm:@ai-sdk/xai@2.0.7
-        version: '@ai-sdk/xai@2.0.7(zod@3.25.76)'
+        specifier: npm:@ai-sdk/xai@2.0.26
+        version: '@ai-sdk/xai@2.0.26(zod@3.25.76)'
       '@mastra/memory':
         specifier: workspace:*
         version: link:../memory
       ai:
-        specifier: ^5.0.60
-        version: 5.0.60(zod@3.25.76)
+        specifier: ^5.0.76
+        version: 5.0.76(zod@3.25.76)
       ignore:
         specifier: ^7.0.5
         version: 7.0.5
@@ -1176,7 +1176,7 @@ importers:
         version: link:../loggers
       '@opentelemetry/auto-instrumentations-node':
         specifier: ^0.62.1
-        version: 0.62.2(@opentelemetry/api@1.9.0)(@opentelemetry/core@2.1.0(@opentelemetry/api@1.9.0))
+        version: 0.62.2(@opentelemetry/api@1.9.0)(@opentelemetry/core@2.1.0(@opentelemetry/api@1.9.0))(encoding@0.1.13)
       '@opentelemetry/core':
         specifier: ^2.0.1
         version: 2.1.0(@opentelemetry/api@1.9.0)
@@ -1264,7 +1264,7 @@ importers:
         version: link:../core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/fs-extra':
         specifier: ^11.0.4
         version: 11.0.4
@@ -1288,7 +1288,7 @@ importers:
         version: 4.50.2
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       type-fest:
         specifier: ^4.41.0
         version: 4.41.0
@@ -1325,7 +1325,7 @@ importers:
         version: link:../core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -1334,7 +1334,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -1388,7 +1388,7 @@ importers:
         version: 1.9.0
       '@opentelemetry/auto-instrumentations-node':
         specifier: ^0.62.1
-        version: 0.62.2(@opentelemetry/api@1.9.0)(@opentelemetry/core@2.1.0(@opentelemetry/api@1.9.0))
+        version: 0.62.2(@opentelemetry/api@1.9.0)(@opentelemetry/core@2.1.0(@opentelemetry/api@1.9.0))(encoding@0.1.13)
       '@opentelemetry/core':
         specifier: ^2.0.1
         version: 2.1.0(@opentelemetry/api@1.9.0)
@@ -1491,7 +1491,7 @@ importers:
         version: link:../_types-builder
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@openrouter/ai-sdk-provider':
         specifier: ^0.4.6
         version: 0.4.6(zod@3.25.76)
@@ -1533,7 +1533,7 @@ importers:
         version: 27.0.2
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -1573,7 +1573,7 @@ importers:
         version: link:../_config
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@rollup/plugin-commonjs':
         specifier: 28.0.6
         version: 28.0.6(rollup@4.50.2)
@@ -1721,7 +1721,7 @@ importers:
         version: link:../mcp
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/babel__core':
         specifier: ^7.20.5
         version: 7.20.5
@@ -1751,7 +1751,7 @@ importers:
         version: 2.2.2
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       type-fest:
         specifier: ^4.41.0
         version: 4.41.0
@@ -1800,7 +1800,7 @@ importers:
         version: link:../core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/difflib':
         specifier: ^0.2.7
         version: 0.2.7
@@ -1824,7 +1824,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -1883,7 +1883,7 @@ importers:
         version: link:../core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -1892,7 +1892,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -1950,7 +1950,7 @@ importers:
         version: 1.29.3
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -1968,7 +1968,7 @@ importers:
         version: 0.0.7(@modelcontextprotocol/sdk@1.17.5)(hono@4.9.7)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       tsx:
         specifier: ^4.19.4
         version: 4.20.6
@@ -2128,8 +2128,8 @@ importers:
         specifier: ^4.3.19
         version: 4.3.19(react@19.1.1)(zod@3.25.76)
       ai-v5:
-        specifier: npm:ai@5.0.60
-        version: ai@5.0.60(zod@3.25.76)
+        specifier: npm:ai@5.0.76
+        version: ai@5.0.76(zod@3.25.76)
       async-mutex:
         specifier: ^0.5.0
         version: 0.5.0
@@ -2175,7 +2175,7 @@ importers:
         version: link:../core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/json-schema':
         specifier: ^7.0.15
         version: 7.0.15
@@ -2190,7 +2190,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -2362,7 +2362,7 @@ importers:
         version: 9.37.0
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/react':
         specifier: ^19.1.9
         version: 19.1.13
@@ -2706,7 +2706,7 @@ importers:
         version: link:../core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/big.js':
         specifier: ^6.2.2
         version: 6.2.2
@@ -2724,7 +2724,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -2763,8 +2763,8 @@ importers:
         specifier: ^20.19.21
         version: 20.19.21
       ai:
-        specifier: 4.3.16
-        version: 4.3.16(react@19.1.1)(zod@3.25.76)
+        specifier: 4.3.19
+        version: 4.3.19(react@19.1.1)(zod@3.25.76)
       eslint:
         specifier: ^9.37.0
         version: 9.37.0(jiti@2.6.0)
@@ -2787,8 +2787,8 @@ importers:
         specifier: ^1.3.24
         version: 1.3.24(zod@3.25.76)
       '@ai-sdk/openai-v5':
-        specifier: npm:@ai-sdk/openai@2.0.42
-        version: '@ai-sdk/openai@2.0.42(zod@3.25.76)'
+        specifier: npm:@ai-sdk/openai@2.0.52
+        version: '@ai-sdk/openai@2.0.52(zod@3.25.76)'
       '@internal/lint':
         specifier: workspace:*
         version: link:../_config
@@ -2806,7 +2806,7 @@ importers:
         version: link:../core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -2818,7 +2818,7 @@ importers:
         version: 2.2.2
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -2866,7 +2866,7 @@ importers:
         specifier: ^20.19.21
         version: 20.19.21
       ai:
-        specifier: ^4.3.16
+        specifier: ^4.3.19
         version: 4.3.19(react@19.1.1)(zod@3.25.76)
       eslint:
         specifier: ^9.37.0
@@ -2908,7 +2908,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -2917,7 +2917,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -2945,7 +2945,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -2954,7 +2954,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -2982,7 +2982,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -2991,7 +2991,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -3022,7 +3022,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -3037,7 +3037,7 @@ importers:
         version: 4.20251008.0(bufferutil@4.0.9)(utf-8-validate@6.0.3)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -3068,7 +3068,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -3083,7 +3083,7 @@ importers:
         version: 4.20251008.0(bufferutil@4.0.9)(utf-8-validate@6.0.3)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -3108,7 +3108,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -3126,7 +3126,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -3160,7 +3160,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -3178,7 +3178,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -3209,7 +3209,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -3218,7 +3218,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -3246,7 +3246,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -3255,7 +3255,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -3292,7 +3292,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -3301,7 +3301,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -3329,7 +3329,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/mssql':
         specifier: ^9.1.8
         version: 9.1.8
@@ -3341,7 +3341,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -3366,7 +3366,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -3375,7 +3375,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -3412,7 +3412,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -3424,7 +3424,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -3449,7 +3449,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -3461,7 +3461,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -3489,7 +3489,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -3498,7 +3498,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -3529,7 +3529,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -3541,7 +3541,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -3566,7 +3566,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -3578,7 +3578,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -3609,7 +3609,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -3621,7 +3621,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -3646,7 +3646,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -3658,7 +3658,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -3683,7 +3683,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -3692,7 +3692,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -3720,7 +3720,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -3729,7 +3729,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -3760,7 +3760,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -3769,7 +3769,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -3797,7 +3797,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -3806,7 +3806,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -3827,7 +3827,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.5
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -3839,7 +3839,7 @@ importers:
         version: 10.18.2
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -3956,7 +3956,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -3965,7 +3965,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -3993,7 +3993,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -4002,7 +4002,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -4033,7 +4033,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -4045,7 +4045,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -4073,7 +4073,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -4082,7 +4082,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -4103,7 +4103,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -4112,7 +4112,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -4143,7 +4143,7 @@ importers:
         version: link:../../packages/core
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -4152,7 +4152,7 @@ importers:
         version: 9.37.0(jiti@2.6.0)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -4198,7 +4198,7 @@ importers:
         version: link:../../stores/libsql
       '@microsoft/api-extractor':
         specifier: ^7.52.8
-        version: 7.52.8(@types/node@20.19.21)
+        version: 7.53.1(@types/node@20.19.21)
       '@types/node':
         specifier: ^20.19.21
         version: 20.19.21
@@ -4222,7 +4222,7 @@ importers:
         version: 1.8.2(encoding@0.1.13)
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
+        version: 8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -4251,12 +4251,6 @@ packages:
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
-  '@ai-sdk/anthropic@2.0.4':
-    resolution: {integrity: sha512-ii2bZEUPwBitUiK1dpX+HsOarcDGY71G9TVdSJqbfXSVqa+speJNZ8PA/bjuNMml0NyX8VxNsaMg3SwBUCZspA==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      zod: ^3.25.76 || ^4
-
   '@ai-sdk/cohere@1.2.10':
     resolution: {integrity: sha512-OaUwd5xj4bxSO8hdCbX1a5uUlTouU8FcodSuRON6xDSsmjZIvQL4O2G1XzcidxiQVL8JQuA+M0tHZOwGxSL96A==}
     engines: {node: '>=18'}
@@ -4268,18 +4262,6 @@ packages:
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4
-
-  '@ai-sdk/gateway@1.0.30':
-    resolution: {integrity: sha512-QdrSUryr/CLcsCISokLHOImcHj1adGXk1yy4B3qipqLhcNc33Kj/O/3crI790Qp85oDx7sc4vm7R4raf9RA/kg==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      zod: ^3.25.76 || ^4.1.8
-
-  '@ai-sdk/gateway@1.0.33':
-    resolution: {integrity: sha512-v9i3GPEo4t3fGcSkQkc07xM6KJN75VUv7C1Mqmmsu2xD8lQwnQfsrgAXyNuWe20yGY0eHuheSPDZhiqsGKtH1g==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      zod: ^3.25.76 || ^4.1.8
 
   '@ai-sdk/gateway@2.0.0':
     resolution: {integrity: sha512-Gj0PuawK7NkZuyYgO/h5kDK/l6hFOjhLdTq3/Lli1FTl47iGmwhH1IZQpAL3Z09BeFYWakcwUmn02ovIm2wy9g==}
@@ -4299,23 +4281,17 @@ packages:
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
-  '@ai-sdk/google@2.0.6':
-    resolution: {integrity: sha512-8acuseWJI+RRH99JDWM/n7IJRuuGNa4YzLXB/leqE/ZByHyIiVWGADjJi/vfnJnmdM5fQnezJ6SRTF6feI5rSQ==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      zod: ^3.25.76 || ^4
-
   '@ai-sdk/groq@1.2.9':
     resolution: {integrity: sha512-7MoDaxm8yWtiRbD1LipYZG0kBl+Xe0sv/EeyxnHnGPZappXdlgtdOgTZVjjXkT3nWP30jjZi9A45zoVrBMb3Xg==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.0.0
 
-  '@ai-sdk/groq@2.0.10':
-    resolution: {integrity: sha512-y74lbQn2c251TdjF85g1XrjBO/U6ryaq4YVolh2HoqVQf6GimSt8RnPzvTnoAq/2Y/8lFjyWiCmdMSZbEngwqQ==}
+  '@ai-sdk/groq@2.0.24':
+    resolution: {integrity: sha512-PCtNwFsakxR6B/o+l3gtxlPIwN8lawK3vvOjRdC759Y8WtNxCv5RUs0JsxIKyAZxO+RBEy0AoL8xTQUy8fn3gw==}
     engines: {node: '>=18'}
     peerDependencies:
-      zod: ^3.25.76 || ^4
+      zod: ^3.25.76 || ^4.1.8
 
   '@ai-sdk/openai-compatible@0.2.16':
     resolution: {integrity: sha512-LkvfcM8slJedRyJa/MiMiaOzcMjV1zNDwzTHEGz7aAsgsQV0maLfmJRi/nuSwf5jmp0EouC+JXXDUj2l94HgQw==}
@@ -4329,20 +4305,14 @@ packages:
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
-  '@ai-sdk/openai-compatible@1.0.7':
-    resolution: {integrity: sha512-mH+0yoJCvPQZBwwyw8ALil0cA40dQAPc+YhaANFxpjDJKqtATpHXPxq7u2SiMNkbqV26jO92etHPM+EP2+p2VA==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      zod: ^3.25.76 || ^4
-
   '@ai-sdk/openai@1.3.24':
     resolution: {integrity: sha512-GYXnGJTHRTZc4gJMSmFRgEQudjqd4PUN0ZjQhPwOAYH1yOAvQoG/Ikqs+HyISRbLPCrhbZnPKCNHuRU4OfpW0Q==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.0.0
 
-  '@ai-sdk/openai@2.0.42':
-    resolution: {integrity: sha512-9mM6QS8k0ooH9qMC27nlrYLQmNDnO6Rk0JTmFo/yUxpABEWOcvQhMWNHbp9lFL6Ty5vkdINrujhsAQfWuEleOg==}
+  '@ai-sdk/openai@2.0.52':
+    resolution: {integrity: sha512-n1arAo4+63e6/FFE6z/1ZsZbiOl4cfsoZ3F4i2X7LPIEea786Y2yd7Qdr7AdB4HTLVo3OSb1PHVIcQmvYIhmEA==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -4368,23 +4338,11 @@ packages:
     peerDependencies:
       zod: ^3.23.8
 
-  '@ai-sdk/provider-utils@3.0.10':
-    resolution: {integrity: sha512-T1gZ76gEIwffep6MWI0QNy9jgoybUHE7TRaHB5k54K8mF91ciGFlbtCGxDYhMH3nCRergKwYFIDeFF0hJSIQHQ==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      zod: ^3.25.76 || ^4.1.8
-
   '@ai-sdk/provider-utils@3.0.12':
     resolution: {integrity: sha512-ZtbdvYxdMoria+2SlNarEk6Hlgyf+zzcznlD55EAl+7VZvJaSg2sqPvwArY7L6TfDEDJsnCq0fdhBSkYo0Xqdg==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
-
-  '@ai-sdk/provider-utils@3.0.3':
-    resolution: {integrity: sha512-kAxIw1nYmFW1g5TvE54ZB3eNtgZna0RnLjPUp1ltz1+t9xkXJIuDT4atrwfau9IbS0BOef38wqrI8CjFfQrxhw==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      zod: ^3.25.76 || ^4
 
   '@ai-sdk/provider-utils@3.0.9':
     resolution: {integrity: sha512-Pm571x5efqaI4hf9yW4KsVlDBDme8++UepZRnq+kqVBWWjgvGhQlzU8glaFq0YJEB9kkxZHbRRyVeHoV2sRYaQ==}
@@ -4414,8 +4372,8 @@ packages:
       zod:
         optional: true
 
-  '@ai-sdk/react@2.0.57':
-    resolution: {integrity: sha512-R4vKp02FkvjVwQDOknERFqZLt3vDiqMSpVOZ1Rr1RJSlpJ/06G5PTeyqHzqLXENJ3sMN2Gj9vj0lGiaudj5hXA==}
+  '@ai-sdk/react@2.0.76':
+    resolution: {integrity: sha512-ggAPzyaKJTqUWigpxMzI5DuC0Y3iEpDUPCgz6/6CpnKZY/iok+x5xiZhDemeaP0ILw5IQekV0kdgBR8JPgI8zQ==}
     engines: {node: '>=18'}
     peerDependencies:
       react: ^18 || ^19 || ^19.0.0-rc
@@ -4441,12 +4399,6 @@ packages:
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
-
-  '@ai-sdk/xai@2.0.7':
-    resolution: {integrity: sha512-XVrQZwxOGRik8c32d6XACnTqxBvHNBcMxyEH5Ep0awgyX23w1hIjBynR+UbGx1ARjLPwxB0EgJASz53Z0AJJ3w==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      zod: ^3.25.76 || ^4
 
   '@alloc/quick-lru@5.2.0':
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
@@ -7229,15 +7181,8 @@ packages:
     resolution: {integrity: sha512-+uvDktesJmVtiwxMtimq+3f5bKlsan4T7TokxOI7DbxFkApwrRNss5GYEXbInveMTz8LpGth/9Ch5BTwCqrpfA==}
     engines: {node: '>=22.0.0'}
 
-  '@microsoft/api-extractor-model@7.30.6':
-    resolution: {integrity: sha512-znmFn69wf/AIrwHya3fxX6uB5etSIn6vg4Q4RB/tb5VDDs1rqREc+AvMC/p19MUN13CZ7+V/8pkYPTj7q8tftg==}
-
   '@microsoft/api-extractor-model@7.31.1':
     resolution: {integrity: sha512-Dhnip5OFKbl85rq/ICHBFGhV4RA5UQSl8AC/P/zoGvs+CBudPkatt5kIhMGiYgVPnUWmfR6fcp38+1AFLYNtUw==}
-
-  '@microsoft/api-extractor@7.52.8':
-    resolution: {integrity: sha512-cszYIcjiNscDoMB1CIKZ3My61+JOhpERGlGr54i6bocvGLrcL/wo9o+RNXMBrb7XgLtKaizZWUpqRduQuHQLdg==}
-    hasBin: true
 
   '@microsoft/api-extractor@7.53.1':
     resolution: {integrity: sha512-bul5eTNxijLdDBqLye74u9494sRmf+9QULtec9Od0uHnifahGeNt8CC4/xCdn7mVyEBrXIQyQ5+sc4Uc0QfBSA==}
@@ -9446,14 +9391,6 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@rushstack/node-core-library@5.13.1':
-    resolution: {integrity: sha512-5yXhzPFGEkVc9Fu92wsNJ9jlvdwz4RNb2bMso+/+TH0nMm1jDDDsOIf4l8GAkPxGuwPw5DH24RliWVfSPhlW/Q==}
-    peerDependencies:
-      '@types/node': ^20.19.21
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-
   '@rushstack/node-core-library@5.17.0':
     resolution: {integrity: sha512-24vt1GbHN6kyIglRMTVpyEiNRRRJK8uZHc1XoGAhmnTDKnrWet8OmOpImMswJIe6gM78eV8cMg1HXwuUHkSSgg==}
     peerDependencies:
@@ -9470,19 +9407,8 @@ packages:
       '@types/node':
         optional: true
 
-  '@rushstack/rig-package@0.5.3':
-    resolution: {integrity: sha512-olzSSjYrvCNxUFZowevC3uz8gvKr3WTpHQ7BkpjtRpA3wK+T0ybep/SRUMfr195gBzJm5gaXw0ZMgjIyHqJUow==}
-
   '@rushstack/rig-package@0.6.0':
     resolution: {integrity: sha512-ZQmfzsLE2+Y91GF15c65L/slMRVhF6Hycq04D4TwtdGaUAbIXXg9c5pKA5KFU7M4QMaihoobp9JJYpYcaY3zOw==}
-
-  '@rushstack/terminal@0.15.3':
-    resolution: {integrity: sha512-DGJ0B2Vm69468kZCJkPj3AH5nN+nR9SPmC0rFHtzsS4lBQ7/dgOwtwVxYP7W9JPDMuRBkJ4KHmWKr036eJsj9g==}
-    peerDependencies:
-      '@types/node': ^20.19.21
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
 
   '@rushstack/terminal@0.19.1':
     resolution: {integrity: sha512-jsBuSad67IDVMO2yp0hDfs0OdE4z3mDIjIL2pclDT3aEJboeZXE85e1HjuD0F6JoW3XgHvDwoX+WOV+AVTDQeA==}
@@ -9491,9 +9417,6 @@ packages:
     peerDependenciesMeta:
       '@types/node':
         optional: true
-
-  '@rushstack/ts-command-line@5.0.1':
-    resolution: {integrity: sha512-bsbUucn41UXrQK7wgM8CNM/jagBytEyJqXw/umtI8d68vFm1Jwxh1OtLrlW7uGZgjCWiiPH6ooUNa1aVsuVr3Q==}
 
   '@rushstack/ts-command-line@5.1.1':
     resolution: {integrity: sha512-HPzFsUcr+wZ3oQI08Ec/E6cuiAVHKzrXZGHhwiwIGygAFiqN5QzX+ff30n70NU2WyE26CykgMwBZZSSyHCJrzA==}
@@ -10575,10 +10498,6 @@ packages:
       '@aws-sdk/credential-provider-web-identity':
         optional: true
 
-  '@vercel/oidc@3.0.1':
-    resolution: {integrity: sha512-V/YRVrJDqM6VaMBjRUrd6qRMrTKvZjHdVdEmdXsOZMulTa3iK98ijKTc3wldBmst6W5rHpqMoKllKcBAHgN7GQ==}
-    engines: {node: '>= 20'}
-
   '@vercel/oidc@3.0.3':
     resolution: {integrity: sha512-yNEQvPcVrK9sIe637+I0jD6leluPxzwJKx/Haw6F4H77CdDsszUn5V3o96LPziXkSNE2B83+Z3mjqGKBK/R6Gg==}
     engines: {node: '>= 20'}
@@ -10796,16 +10715,6 @@ packages:
     resolution: {integrity: sha512-4I7Td01quW/RpocfNayFdFVk1qSuoh0E7JrbRJ16nH01HhKFQ88INq9Sd+nd72zqRySlr9BmDA8xlEJ6vJMrYA==}
     engines: {node: '>=8'}
 
-  ai@4.3.16:
-    resolution: {integrity: sha512-KUDwlThJ5tr2Vw0A1ZkbDKNME3wzWhuVfAOwIvFUzl1TPVDFAXDFTXio3p+jaKneB+dKNCvFFlolYmmgHttG1g==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      react: ^18 || ^19 || ^19.0.0-rc
-      zod: ^3.23.8
-    peerDependenciesMeta:
-      react:
-        optional: true
-
   ai@4.3.19:
     resolution: {integrity: sha512-dIE2bfNpqHN3r6IINp9znguYdhIOheKW2LDigAMrgt/upT3B8eBGPSCblENvaZGoq+hxaN9fSMzjWpbqloP+7Q==}
     engines: {node: '>=18'}
@@ -10821,18 +10730,6 @@ packages:
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4
-
-  ai@5.0.57:
-    resolution: {integrity: sha512-g4K881HFl9aGqvnp1Z/gRXYmfjORn5q5pyPIVmMndT+5AjiBRvUVzFZn1rXdzL61cjbMNyjO4NPfEbBE6Z/W3A==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      zod: ^3.25.76 || ^4.1.8
-
-  ai@5.0.60:
-    resolution: {integrity: sha512-80U/3kmdBW6g+JkLXpz/P2EwkyEaWlPlYtuLUpx/JYK9F7WZh9NnkYoh1KvUi1Sbpo0NyurBTvX0a2AG9mmbDA==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      zod: ^3.25.76 || ^4.1.8
 
   ai@5.0.76:
     resolution: {integrity: sha512-ZCxi1vrpyCUnDbtYrO/W8GLvyacV9689f00yshTIQ3mFFphbD7eIv40a2AOZBv3GGRA7SSRYIDnr56wcS/gyQg==}
@@ -14115,9 +14012,6 @@ packages:
     resolution: {integrity: sha512-IPZ167aShDZZUMdRk66cyQAW3qr0WzbHkPdMYa8bzZhlHhO3jALbKdxcaak7W9FfT2rZNpQuUu4Od7ILEpXSaw==}
     engines: {node: 20 || >=22}
 
-  minimatch@3.0.8:
-    resolution: {integrity: sha512-6FsRAQsxQ61mw+qP1ZzbL9Bc78x2p5OqNgNpnoAFLTrX8n5Kxph0CsnhmKKNXTWjXqU5L0pGPR7hYk+XWZr60Q==}
-
   minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
 
@@ -17193,12 +17087,6 @@ snapshots:
       '@ai-sdk/provider-utils': 3.0.12(zod@3.25.76)
       zod: 3.25.76
 
-  '@ai-sdk/anthropic@2.0.4(zod@3.25.76)':
-    dependencies:
-      '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.3(zod@3.25.76)
-      zod: 3.25.76
-
   '@ai-sdk/cohere@1.2.10(zod@3.25.76)':
     dependencies:
       '@ai-sdk/provider': 1.1.3
@@ -17211,25 +17099,19 @@ snapshots:
       '@ai-sdk/provider-utils': 3.0.9(zod@4.1.12)
       zod: 4.1.12
 
-  '@ai-sdk/gateway@1.0.30(zod@4.1.12)':
-    dependencies:
-      '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.10(zod@4.1.12)
-      zod: 4.1.12
-
-  '@ai-sdk/gateway@1.0.33(zod@3.25.76)':
-    dependencies:
-      '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.10(zod@3.25.76)
-      '@vercel/oidc': 3.0.1
-      zod: 3.25.76
-
   '@ai-sdk/gateway@2.0.0(zod@3.25.76)':
     dependencies:
       '@ai-sdk/provider': 2.0.0
       '@ai-sdk/provider-utils': 3.0.12(zod@3.25.76)
       '@vercel/oidc': 3.0.3
       zod: 3.25.76
+
+  '@ai-sdk/gateway@2.0.0(zod@4.1.12)':
+    dependencies:
+      '@ai-sdk/provider': 2.0.0
+      '@ai-sdk/provider-utils': 3.0.12(zod@4.1.12)
+      '@vercel/oidc': 3.0.3
+      zod: 4.1.12
 
   '@ai-sdk/google@1.2.22(zod@3.25.76)':
     dependencies:
@@ -17243,22 +17125,16 @@ snapshots:
       '@ai-sdk/provider-utils': 3.0.12(zod@3.25.76)
       zod: 3.25.76
 
-  '@ai-sdk/google@2.0.6(zod@3.25.76)':
-    dependencies:
-      '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.3(zod@3.25.76)
-      zod: 3.25.76
-
   '@ai-sdk/groq@1.2.9(zod@3.25.76)':
     dependencies:
       '@ai-sdk/provider': 1.1.3
       '@ai-sdk/provider-utils': 2.2.8(zod@3.25.76)
       zod: 3.25.76
 
-  '@ai-sdk/groq@2.0.10(zod@3.25.76)':
+  '@ai-sdk/groq@2.0.24(zod@3.25.76)':
     dependencies:
       '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.3(zod@3.25.76)
+      '@ai-sdk/provider-utils': 3.0.12(zod@3.25.76)
       zod: 3.25.76
 
   '@ai-sdk/openai-compatible@0.2.16(zod@3.25.76)':
@@ -17273,22 +17149,16 @@ snapshots:
       '@ai-sdk/provider-utils': 3.0.12(zod@3.25.76)
       zod: 3.25.76
 
-  '@ai-sdk/openai-compatible@1.0.7(zod@3.25.76)':
-    dependencies:
-      '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.3(zod@3.25.76)
-      zod: 3.25.76
-
   '@ai-sdk/openai@1.3.24(zod@3.25.76)':
     dependencies:
       '@ai-sdk/provider': 1.1.3
       '@ai-sdk/provider-utils': 2.2.8(zod@3.25.76)
       zod: 3.25.76
 
-  '@ai-sdk/openai@2.0.42(zod@3.25.76)':
+  '@ai-sdk/openai@2.0.52(zod@3.25.76)':
     dependencies:
       '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.10(zod@3.25.76)
+      '@ai-sdk/provider-utils': 3.0.12(zod@3.25.76)
       zod: 3.25.76
 
   '@ai-sdk/openai@2.0.53(zod@3.25.76)':
@@ -17320,20 +17190,6 @@ snapshots:
       secure-json-parse: 2.7.0
       zod: 4.1.12
 
-  '@ai-sdk/provider-utils@3.0.10(zod@3.25.76)':
-    dependencies:
-      '@ai-sdk/provider': 2.0.0
-      '@standard-schema/spec': 1.0.0
-      eventsource-parser: 3.0.6
-      zod: 3.25.76
-
-  '@ai-sdk/provider-utils@3.0.10(zod@4.1.12)':
-    dependencies:
-      '@ai-sdk/provider': 2.0.0
-      '@standard-schema/spec': 1.0.0
-      eventsource-parser: 3.0.6
-      zod: 4.1.12
-
   '@ai-sdk/provider-utils@3.0.12(zod@3.25.76)':
     dependencies:
       '@ai-sdk/provider': 2.0.0
@@ -17341,13 +17197,12 @@ snapshots:
       eventsource-parser: 3.0.6
       zod: 3.25.76
 
-  '@ai-sdk/provider-utils@3.0.3(zod@3.25.76)':
+  '@ai-sdk/provider-utils@3.0.12(zod@4.1.12)':
     dependencies:
       '@ai-sdk/provider': 2.0.0
       '@standard-schema/spec': 1.0.0
       eventsource-parser: 3.0.6
-      zod: 3.25.76
-      zod-to-json-schema: 3.24.6(zod@3.25.76)
+      zod: 4.1.12
 
   '@ai-sdk/provider-utils@3.0.9(zod@4.1.12)':
     dependencies:
@@ -17388,10 +17243,10 @@ snapshots:
     optionalDependencies:
       zod: 4.1.12
 
-  '@ai-sdk/react@2.0.57(react@19.1.1)(zod@4.1.12)':
+  '@ai-sdk/react@2.0.76(react@19.1.1)(zod@4.1.12)':
     dependencies:
-      '@ai-sdk/provider-utils': 3.0.10(zod@4.1.12)
-      ai: 5.0.57(zod@4.1.12)
+      '@ai-sdk/provider-utils': 3.0.12(zod@4.1.12)
+      ai: 5.0.76(zod@4.1.12)
       react: 19.1.1
       swr: 2.3.6(react@19.1.1)
       throttleit: 2.1.0
@@ -17424,13 +17279,6 @@ snapshots:
       '@ai-sdk/openai-compatible': 1.0.22(zod@3.25.76)
       '@ai-sdk/provider': 2.0.0
       '@ai-sdk/provider-utils': 3.0.12(zod@3.25.76)
-      zod: 3.25.76
-
-  '@ai-sdk/xai@2.0.7(zod@3.25.76)':
-    dependencies:
-      '@ai-sdk/openai-compatible': 1.0.7(zod@3.25.76)
-      '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.3(zod@3.25.76)
       zod: 3.25.76
 
   '@alloc/quick-lru@5.2.0': {}
@@ -20881,7 +20729,7 @@ snapshots:
       '@isaacs/ttlcache': 1.4.1
       '@mastra/schema-compat': 0.11.4(ai@4.3.19(react@19.1.1)(zod@4.1.12))(zod@4.1.12)
       '@opentelemetry/api': 1.9.0
-      '@opentelemetry/auto-instrumentations-node': 0.62.2(@opentelemetry/api@1.9.0)(@opentelemetry/core@2.1.0(@opentelemetry/api@1.9.0))
+      '@opentelemetry/auto-instrumentations-node': 0.62.2(@opentelemetry/api@1.9.0)(@opentelemetry/core@2.1.0(@opentelemetry/api@1.9.0))(encoding@0.1.13)
       '@opentelemetry/core': 2.1.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/exporter-trace-otlp-grpc': 0.203.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/exporter-trace-otlp-http': 0.203.0(@opentelemetry/api@1.9.0)
@@ -20968,38 +20816,11 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@microsoft/api-extractor-model@7.30.6(@types/node@20.19.21)':
-    dependencies:
-      '@microsoft/tsdoc': 0.15.1
-      '@microsoft/tsdoc-config': 0.17.1
-      '@rushstack/node-core-library': 5.13.1(@types/node@20.19.21)
-    transitivePeerDependencies:
-      - '@types/node'
-
   '@microsoft/api-extractor-model@7.31.1(@types/node@20.19.21)':
     dependencies:
       '@microsoft/tsdoc': 0.15.1
       '@microsoft/tsdoc-config': 0.17.1
       '@rushstack/node-core-library': 5.17.0(@types/node@20.19.21)
-    transitivePeerDependencies:
-      - '@types/node'
-    optional: true
-
-  '@microsoft/api-extractor@7.52.8(@types/node@20.19.21)':
-    dependencies:
-      '@microsoft/api-extractor-model': 7.30.6(@types/node@20.19.21)
-      '@microsoft/tsdoc': 0.15.1
-      '@microsoft/tsdoc-config': 0.17.1
-      '@rushstack/node-core-library': 5.13.1(@types/node@20.19.21)
-      '@rushstack/rig-package': 0.5.3
-      '@rushstack/terminal': 0.15.3(@types/node@20.19.21)
-      '@rushstack/ts-command-line': 5.0.1(@types/node@20.19.21)
-      lodash: 4.17.21
-      minimatch: 3.0.8
-      resolve: 1.22.10
-      semver: 7.5.4
-      source-map: 0.6.1
-      typescript: 5.8.3
     transitivePeerDependencies:
       - '@types/node'
 
@@ -21020,7 +20841,6 @@ snapshots:
       typescript: 5.8.3
     transitivePeerDependencies:
       - '@types/node'
-    optional: true
 
   '@microsoft/tsdoc-config@0.17.1':
     dependencies:
@@ -21353,7 +21173,7 @@ snapshots:
       - encoding
       - supports-color
 
-  '@opentelemetry/auto-instrumentations-node@0.62.2(@opentelemetry/api@1.9.0)(@opentelemetry/core@2.1.0(@opentelemetry/api@1.9.0))':
+  '@opentelemetry/auto-instrumentations-node@0.62.2(@opentelemetry/api@1.9.0)(@opentelemetry/core@2.1.0(@opentelemetry/api@1.9.0))(encoding@0.1.13)':
     dependencies:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/core': 2.1.0(@opentelemetry/api@1.9.0)
@@ -21402,7 +21222,7 @@ snapshots:
       '@opentelemetry/resource-detector-aws': 2.3.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/resource-detector-azure': 0.10.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/resource-detector-container': 0.7.3(@opentelemetry/api@1.9.0)
-      '@opentelemetry/resource-detector-gcp': 0.37.0(@opentelemetry/api@1.9.0)
+      '@opentelemetry/resource-detector-gcp': 0.37.0(@opentelemetry/api@1.9.0)(encoding@0.1.13)
       '@opentelemetry/resources': 2.1.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/sdk-node': 0.203.0(@opentelemetry/api@1.9.0)
     transitivePeerDependencies:
@@ -22556,7 +22376,7 @@ snapshots:
       - encoding
       - supports-color
 
-  '@opentelemetry/resource-detector-gcp@0.37.0(@opentelemetry/api@1.9.0)':
+  '@opentelemetry/resource-detector-gcp@0.37.0(@opentelemetry/api@1.9.0)(encoding@0.1.13)':
     dependencies:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/core': 2.1.0(@opentelemetry/api@1.9.0)
@@ -23611,19 +23431,6 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.50.2':
     optional: true
 
-  '@rushstack/node-core-library@5.13.1(@types/node@20.19.21)':
-    dependencies:
-      ajv: 8.13.0
-      ajv-draft-04: 1.0.0(ajv@8.13.0)
-      ajv-formats: 3.0.1(ajv@8.13.0)
-      fs-extra: 11.3.2
-      import-lazy: 4.0.0
-      jju: 1.4.0
-      resolve: 1.22.10
-      semver: 7.5.4
-    optionalDependencies:
-      '@types/node': 20.19.21
-
   '@rushstack/node-core-library@5.17.0(@types/node@20.19.21)':
     dependencies:
       ajv: 8.13.0
@@ -23636,30 +23443,15 @@ snapshots:
       semver: 7.5.4
     optionalDependencies:
       '@types/node': 20.19.21
-    optional: true
 
   '@rushstack/problem-matcher@0.1.1(@types/node@20.19.21)':
     optionalDependencies:
       '@types/node': 20.19.21
-    optional: true
-
-  '@rushstack/rig-package@0.5.3':
-    dependencies:
-      resolve: 1.22.10
-      strip-json-comments: 3.1.1
 
   '@rushstack/rig-package@0.6.0':
     dependencies:
       resolve: 1.22.10
       strip-json-comments: 3.1.1
-    optional: true
-
-  '@rushstack/terminal@0.15.3(@types/node@20.19.21)':
-    dependencies:
-      '@rushstack/node-core-library': 5.13.1(@types/node@20.19.21)
-      supports-color: 8.1.1
-    optionalDependencies:
-      '@types/node': 20.19.21
 
   '@rushstack/terminal@0.19.1(@types/node@20.19.21)':
     dependencies:
@@ -23668,16 +23460,6 @@ snapshots:
       supports-color: 8.1.1
     optionalDependencies:
       '@types/node': 20.19.21
-    optional: true
-
-  '@rushstack/ts-command-line@5.0.1(@types/node@20.19.21)':
-    dependencies:
-      '@rushstack/terminal': 0.15.3(@types/node@20.19.21)
-      '@types/argparse': 1.0.38
-      argparse: 1.0.10
-      string-argv: 0.3.2
-    transitivePeerDependencies:
-      - '@types/node'
 
   '@rushstack/ts-command-line@5.1.1(@types/node@20.19.21)':
     dependencies:
@@ -23687,7 +23469,6 @@ snapshots:
       string-argv: 0.3.2
     transitivePeerDependencies:
       - '@types/node'
-    optional: true
 
   '@sec-ant/readable-stream@0.4.1': {}
 
@@ -25039,8 +24820,6 @@ snapshots:
     optionalDependencies:
       '@aws-sdk/credential-provider-web-identity': 3.901.0
 
-  '@vercel/oidc@3.0.1': {}
-
   '@vercel/oidc@3.0.3': {}
 
   '@vitejs/plugin-react@5.0.4(vite@7.1.9(@types/node@20.19.21)(jiti@1.21.7)(lightningcss@1.30.1)(terser@5.43.1)(tsx@4.20.6)(yaml@2.8.1))':
@@ -25365,18 +25144,6 @@ snapshots:
       indent-string: 4.0.0
     optional: true
 
-  ai@4.3.16(react@19.1.1)(zod@3.25.76):
-    dependencies:
-      '@ai-sdk/provider': 1.1.3
-      '@ai-sdk/provider-utils': 2.2.8(zod@3.25.76)
-      '@ai-sdk/react': 1.2.12(react@19.1.1)(zod@3.25.76)
-      '@ai-sdk/ui-utils': 1.2.11(zod@3.25.76)
-      '@opentelemetry/api': 1.9.0
-      jsondiffpatch: 0.7.3
-      zod: 3.25.76
-    optionalDependencies:
-      react: 19.1.1
-
   ai@4.3.19(react@19.1.1)(zod@3.25.76):
     dependencies:
       '@ai-sdk/provider': 1.1.3
@@ -25409,22 +25176,6 @@ snapshots:
       '@opentelemetry/api': 1.9.0
       zod: 4.1.12
 
-  ai@5.0.57(zod@4.1.12):
-    dependencies:
-      '@ai-sdk/gateway': 1.0.30(zod@4.1.12)
-      '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.10(zod@4.1.12)
-      '@opentelemetry/api': 1.9.0
-      zod: 4.1.12
-
-  ai@5.0.60(zod@3.25.76):
-    dependencies:
-      '@ai-sdk/gateway': 1.0.33(zod@3.25.76)
-      '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.10(zod@3.25.76)
-      '@opentelemetry/api': 1.9.0
-      zod: 3.25.76
-
   ai@5.0.76(zod@3.25.76):
     dependencies:
       '@ai-sdk/gateway': 2.0.0(zod@3.25.76)
@@ -25432,6 +25183,14 @@ snapshots:
       '@ai-sdk/provider-utils': 3.0.12(zod@3.25.76)
       '@opentelemetry/api': 1.9.0
       zod: 3.25.76
+
+  ai@5.0.76(zod@4.1.12):
+    dependencies:
+      '@ai-sdk/gateway': 2.0.0(zod@4.1.12)
+      '@ai-sdk/provider': 2.0.0
+      '@ai-sdk/provider-utils': 3.0.12(zod@4.1.12)
+      '@opentelemetry/api': 1.9.0
+      zod: 4.1.12
 
   ajv-draft-04@1.0.0(ajv@8.13.0):
     optionalDependencies:
@@ -26980,7 +26739,7 @@ snapshots:
       eslint: 9.37.0(jiti@2.6.0)
       eslint-import-context: 0.1.9(unrs-resolver@1.9.2)
       is-glob: 4.0.3
-      minimatch: 9.0.5
+      minimatch: 10.0.3
       semver: 7.7.2
       stable-hash-x: 0.2.0
       unrs-resolver: 1.9.2
@@ -29426,10 +29185,6 @@ snapshots:
   minimatch@10.0.3:
     dependencies:
       '@isaacs/brace-expansion': 5.0.0
-
-  minimatch@3.0.8:
-    dependencies:
-      brace-expansion: 1.1.12
 
   minimatch@3.1.2:
     dependencies:
@@ -31918,35 +31673,6 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  tsup@8.5.0(@microsoft/api-extractor@7.52.8(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1):
-    dependencies:
-      bundle-require: 5.1.0(esbuild@0.25.10)
-      cac: 6.7.14
-      chokidar: 4.0.3
-      consola: 3.4.2
-      debug: 4.4.1
-      esbuild: 0.25.10
-      fix-dts-default-cjs-exports: 1.0.1
-      joycon: 3.1.1
-      picocolors: 1.1.1
-      postcss-load-config: 6.0.1(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(yaml@2.8.1)
-      resolve-from: 5.0.0
-      rollup: 4.50.2
-      source-map: 0.8.0-beta.0
-      sucrase: 3.35.0
-      tinyexec: 0.3.2
-      tinyglobby: 0.2.15
-      tree-kill: 1.2.2
-    optionalDependencies:
-      '@microsoft/api-extractor': 7.52.8(@types/node@20.19.21)
-      postcss: 8.5.6
-      typescript: 5.8.3
-    transitivePeerDependencies:
-      - jiti
-      - supports-color
-      - tsx
-      - yaml
-
   tsup@8.5.0(@microsoft/api-extractor@7.53.1(@types/node@20.19.21))(jiti@2.6.0)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.8.1):
     dependencies:
       bundle-require: 5.1.0(esbuild@0.25.10)
@@ -32389,7 +32115,7 @@ snapshots:
 
   vite-plugin-dts@4.5.4(@types/node@20.19.21)(rollup@4.50.2)(typescript@5.8.3)(vite@7.1.9(@types/node@20.19.21)(jiti@2.6.0)(lightningcss@1.30.1)(terser@5.43.1)(tsx@4.20.6)(yaml@2.8.1)):
     dependencies:
-      '@microsoft/api-extractor': 7.52.8(@types/node@20.19.21)
+      '@microsoft/api-extractor': 7.53.1(@types/node@20.19.21)
       '@rollup/pluginutils': 5.2.0(rollup@4.50.2)
       '@volar/typescript': 2.4.20
       '@vue/language-core': 2.2.0(typescript@5.8.3)
