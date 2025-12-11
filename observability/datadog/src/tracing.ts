@@ -15,6 +15,7 @@
 import tracer from 'dd-trace';
 import type { TracingEvent, AnyExportedSpan, ModelGenerationAttributes } from '@mastra/core/observability';
 import { SpanType } from '@mastra/core/observability';
+import { omitKeys } from '@mastra/core/utils';
 import { BaseExporter } from '@mastra/observability';
 import type { BaseExporterConfig } from '@mastra/observability';
 
@@ -58,7 +59,7 @@ type TraceState = {
  */
 export interface DatadogExporterConfig extends BaseExporterConfig {
   /**
-   * Datadog API key. Required for agentless mode.
+   * Datadog API key. Required (agentless mode is the default).
    * Falls back to DD_API_KEY environment variable.
    */
   apiKey?: string;
@@ -88,7 +89,9 @@ export interface DatadogExporterConfig extends BaseExporterConfig {
   env?: string;
 
   /**
-   * Enable agentless mode (direct intake without Datadog Agent).
+   * Use agentless mode (direct HTTPS intake without local Datadog Agent).
+   * Defaults to true for consistency with other Mastra exporters.
+   * Set to false to use a local Datadog Agent instead.
    * Falls back to DD_LLMOBS_AGENTLESS_ENABLED environment variable.
    */
   agentless?: boolean;
@@ -326,8 +329,11 @@ export class DatadogExporter extends BaseExporter {
     const mlApp = config.mlApp || process.env.DD_LLMOBS_ML_APP;
     const apiKey = config.apiKey || process.env.DD_API_KEY;
     const site = config.site || process.env.DD_SITE || 'datadoghq.com';
-    const agentless =
-      config.agentless ?? ['true', '1'].includes((process.env.DD_LLMOBS_AGENTLESS_ENABLED || '').toLowerCase());
+
+    // Default to agentless mode (true) for consistency with other Mastra exporters
+    // Only disable if explicitly set to false via config or env var
+    const envAgentless = process.env.DD_LLMOBS_AGENTLESS_ENABLED?.toLowerCase();
+    const agentless = config.agentless ?? (envAgentless === 'false' || envAgentless === '0' ? false : true);
 
     // Validate required configuration
     if (!mlApp) {
@@ -337,7 +343,7 @@ export class DatadogExporter extends BaseExporter {
     }
 
     if (agentless && !apiKey) {
-      this.setDisabled('Agentless mode requires apiKey (config.apiKey or DD_API_KEY)');
+      this.setDisabled('Missing required apiKey (set config.apiKey or DD_API_KEY)');
       this.config = config as any;
       return;
     }
@@ -364,29 +370,39 @@ export class DatadogExporter extends BaseExporter {
   protected async _exportTracingEvent(event: TracingEvent): Promise<void> {
     if (this.isDisabled || !(tracer as any).llmobs) return;
 
-    const span = event.exportedSpan;
+    try {
+      const span = event.exportedSpan;
 
-    // Handle event spans (zero-duration spans) - only on span_started
-    if (span.isEvent) {
-      if (event.type === 'span_started') {
-        this.handleEventSpan(span);
+      // Handle event spans (zero-duration spans) - buffer like regular spans for parent-first emission
+      if (span.isEvent) {
+        if (event.type === 'span_started') {
+          this.captureTraceContext(span);
+          this.enqueueSpan(span); // Route through buffer for proper parent context
+        }
+        return; // Skip span_updated and span_ended for events
       }
-      return; // Skip span_updated and span_ended for events
-    }
 
-    // Handle regular spans based on event type
-    switch (event.type) {
-      case 'span_started':
-        this.captureTraceContext(span);
-        return;
+      // Handle regular spans based on event type
+      switch (event.type) {
+        case 'span_started':
+          this.captureTraceContext(span);
+          return;
 
-      case 'span_updated':
-        // No-op: completion-only pattern ignores mid-span updates
-        return;
+        case 'span_updated':
+          // No-op: completion-only pattern ignores mid-span updates
+          return;
 
-      case 'span_ended':
-        this.enqueueSpan(span);
-        return;
+        case 'span_ended':
+          this.enqueueSpan(span);
+          return;
+      }
+    } catch (error) {
+      this.logger.error('Datadog exporter error', {
+        error,
+        eventType: event.type,
+        spanId: event.exportedSpan?.id,
+        spanName: event.exportedSpan?.name,
+      });
     }
   }
 
@@ -416,35 +432,6 @@ export class DatadogExporter extends BaseExporter {
   }
 
   /**
-   * Handles event spans (zero-duration spans like model chunks).
-   */
-  private handleEventSpan(span: AnyExportedSpan): void {
-    if (span.isRootSpan) {
-      this.captureTraceContext(span);
-    }
-
-    const traceCtx = this.traceContext.get(span.traceId);
-    const kind = kindFor(span.type);
-
-    // Build span options with proper typing
-    const options: LLMObsSpanOptions = {
-      kind,
-      name: span.name,
-      sessionId: traceCtx?.sessionId,
-      userId: traceCtx?.userId,
-      startTime: toDate(span.startTime),
-      endTime: span.endTime ? toDate(span.endTime) : toDate(span.startTime),
-    };
-
-    tracer.llmobs.trace(options as any, (ddSpan: any) => {
-      const annotations = this.buildAnnotations(span);
-      if (Object.keys(annotations).length > 0) {
-        tracer.llmobs.annotate(ddSpan, annotations);
-      }
-    });
-  }
-
-  /**
    * Builds annotations object for llmobs.annotate().
    * Uses dd-trace's expected property names: inputData, outputData, metadata, tags, metrics.
    */
@@ -468,9 +455,18 @@ export class DatadogExporter extends BaseExporter {
       annotations.metrics = metrics;
     }
 
-    // Pass metadata as-is (dd-trace expects 'metadata', queryable via @meta.fieldName)
-    if (span.metadata && Object.keys(span.metadata).length > 0) {
-      annotations.metadata = span.metadata;
+    // Forward span.attributes to metadata (minus known fields handled separately)
+    // This ensures tool/workflow spans preserve custom attributes like other exporters
+    const knownFields = ['usage', 'model', 'provider', 'parameters'];
+    const otherAttributes = omitKeys((span.attributes ?? {}) as Record<string, any>, knownFields);
+
+    // Merge span.metadata + remaining attributes into metadata
+    const combinedMetadata = {
+      ...span.metadata,
+      ...otherAttributes,
+    };
+    if (Object.keys(combinedMetadata).length > 0) {
+      annotations.metadata = combinedMetadata;
     }
 
     // Tags only for error info (structural data the exporter knows about)
@@ -521,21 +517,45 @@ export class DatadogExporter extends BaseExporter {
       return;
     }
 
-    tracer.llmobs.submitEvaluation(exported, {
-      label: scorerName,
-      metricType: 'score',
-      value: score,
-      tags: {
-        ...(reason ? { reason } : {}),
-        ...metadata,
-      },
-    });
+    try {
+      tracer.llmobs.submitEvaluation(exported, {
+        label: scorerName,
+        metricType: 'score',
+        value: score,
+        tags: {
+          ...(reason ? { reason } : {}),
+          ...metadata,
+        },
+      });
+    } catch (error) {
+      this.logger.error('Error submitting evaluation to Datadog', {
+        error,
+        traceId,
+        spanId,
+        scorerName,
+      });
+    }
   }
 
   /**
    * Gracefully shuts down the exporter.
    */
   async shutdown(): Promise<void> {
+    // Cancel all pending cleanup timers and clear state FIRST
+    for (const [traceId, state] of this.traceState) {
+      if (state.cleanupTimer) {
+        clearTimeout(state.cleanupTimer);
+      }
+      if (state.buffer.size > 0) {
+        this.logger.warn('Shutdown with pending spans', {
+          traceId,
+          pendingCount: state.buffer.size,
+          spanIds: Array.from(state.buffer.keys()),
+        });
+      }
+    }
+    this.traceState.clear();
+
     // Flush any pending data
     if (tracer.llmobs?.flush) {
       try {
@@ -613,6 +633,15 @@ export class DatadogExporter extends BaseExporter {
 
     if (state.rootEnded && state.buffer.size === 0 && !state.cleanupTimer) {
       const timer = setTimeout(() => {
+        // Log warning if cleanup discards orphaned spans (parent never arrived)
+        const currentState = this.traceState.get(traceId);
+        if (currentState && currentState.buffer.size > 0) {
+          this.logger.warn('Discarding orphaned spans during cleanup', {
+            traceId,
+            orphanedCount: currentState.buffer.size,
+            spanIds: Array.from(currentState.buffer.keys()),
+          });
+        }
         this.traceState.delete(traceId);
         this.traceContext.delete(traceId);
       }, 60_000);
@@ -634,13 +663,18 @@ export class DatadogExporter extends BaseExporter {
     const kind = kindFor(span.type);
     const attrs = span.attributes as ModelGenerationAttributes | undefined;
 
+    const startTime = toDate(span.startTime);
+    // Event spans are point-in-time markers; use startTime for endTime if not set (zero duration)
+    // Regular spans fall back to current time if endTime is not set
+    const endTime = span.endTime ? toDate(span.endTime) : span.isEvent ? startTime : new Date();
+
     const options: LLMObsSpanOptions = {
       kind,
       name: span.name,
       sessionId: traceCtx.sessionId,
       userId: traceCtx.userId,
-      startTime: toDate(span.startTime),
-      endTime: span.endTime ? toDate(span.endTime) : new Date(),
+      startTime,
+      endTime,
       ...(kind === 'llm' && attrs?.model ? { modelName: attrs.model } : {}),
       ...(kind === 'llm' && attrs?.provider ? { modelProvider: attrs.provider } : {}),
     };
@@ -662,6 +696,10 @@ export class DatadogExporter extends BaseExporter {
     }
 
     if (capturedSpan) {
+      // Set native Datadog error status for proper UI highlighting
+      if (span.errorInfo) {
+        capturedSpan.setTag('error', true);
+      }
       const exported = tracer.llmobs.exportSpan ? tracer.llmobs.exportSpan(capturedSpan) : undefined;
       state.contexts.set(span.id, { ddSpan: capturedSpan, exported });
     }
