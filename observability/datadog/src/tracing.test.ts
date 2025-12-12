@@ -4,9 +4,9 @@
  * Uses mock dd-trace to test the exporter without connecting to Datadog.
  */
 
-import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 import type { TracingEvent, AnyExportedSpan } from '@mastra/core/observability';
 import { SpanType, TracingEventType } from '@mastra/core/observability';
+import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 
 // Use vi.hoisted to define mocks before they're used in vi.mock
 const {
@@ -147,13 +147,13 @@ describe('DatadogExporter', () => {
     });
 
     it('disables exporter when mlApp is missing', () => {
-      const exporter = new DatadogExporter({});
+      const _exporter = new DatadogExporter({});
       // Exporter should be disabled - verify by checking that trace is not called on export
       expect(mockEnable).not.toHaveBeenCalled();
     });
 
     it('disables exporter when agentless mode lacks apiKey', () => {
-      const exporter = new DatadogExporter({
+      const _exporter = new DatadogExporter({
         mlApp: 'test-app',
         agentless: true,
         // apiKey not provided
@@ -766,14 +766,25 @@ describe('DatadogExporter', () => {
   });
 
   describe('event spans', () => {
-    it('buffers event spans on span_started like regular spans', async () => {
+    it('processes event spans on span_ended (core emits SPAN_ENDED for events)', async () => {
       const exporter = new DatadogExporter({ mlApp: 'test', apiKey: 'test-key' });
       // Event span without parent should emit immediately (like root span)
       const eventSpan = createMockSpan({ isEvent: true, isRootSpan: true });
 
-      await exporter.exportTracingEvent(createTracingEvent(TracingEventType.SPAN_STARTED, eventSpan));
+      // Core observability emits SPAN_ENDED for event spans (they are complete at creation)
+      await exporter.exportTracingEvent(createTracingEvent(TracingEventType.SPAN_ENDED, eventSpan));
 
       expect(mockTrace).toHaveBeenCalledTimes(1);
+    });
+
+    it('ignores event spans on span_started', async () => {
+      const exporter = new DatadogExporter({ mlApp: 'test', apiKey: 'test-key' });
+      const eventSpan = createMockSpan({ isEvent: true, isRootSpan: true });
+
+      // Core never sends SPAN_STARTED for events, but if it did, we should ignore it
+      await exporter.exportTracingEvent(createTracingEvent(TracingEventType.SPAN_STARTED, eventSpan));
+
+      expect(mockTrace).not.toHaveBeenCalled();
     });
 
     it('ignores event spans on span_updated', async () => {
@@ -781,15 +792,6 @@ describe('DatadogExporter', () => {
       const eventSpan = createMockSpan({ isEvent: true });
 
       await exporter.exportTracingEvent(createTracingEvent(TracingEventType.SPAN_UPDATED, eventSpan));
-
-      expect(mockTrace).not.toHaveBeenCalled();
-    });
-
-    it('ignores event spans on span_ended', async () => {
-      const exporter = new DatadogExporter({ mlApp: 'test', apiKey: 'test-key' });
-      const eventSpan = createMockSpan({ isEvent: true });
-
-      await exporter.exportTracingEvent(createTracingEvent(TracingEventType.SPAN_ENDED, eventSpan));
 
       expect(mockTrace).not.toHaveBeenCalled();
     });
@@ -804,7 +806,8 @@ describe('DatadogExporter', () => {
         endTime: undefined,
       });
 
-      await exporter.exportTracingEvent(createTracingEvent(TracingEventType.SPAN_STARTED, eventSpan));
+      // Core emits SPAN_ENDED for event spans
+      await exporter.exportTracingEvent(createTracingEvent(TracingEventType.SPAN_ENDED, eventSpan));
 
       expect(mockTrace).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -833,7 +836,8 @@ describe('DatadogExporter', () => {
       });
 
       // Event span arrives before parent ends - should be buffered
-      await exporter.exportTracingEvent(createTracingEvent(TracingEventType.SPAN_STARTED, eventSpan));
+      // Core emits SPAN_ENDED for event spans (they are complete at creation)
+      await exporter.exportTracingEvent(createTracingEvent(TracingEventType.SPAN_ENDED, eventSpan));
       expect(mockTrace).toHaveBeenCalledTimes(0);
 
       // Parent ends - both should emit with correct hierarchy
@@ -1128,7 +1132,12 @@ describe('DatadogExporter', () => {
     });
 
     it('schedules cleanup timer after root ends and buffer empties', async () => {
-      const exporter = new DatadogExporter({ mlApp: 'test', apiKey: 'test-key' });
+      const retentionMs = 60_000; // Use shorter retention for test
+      const exporter = new DatadogExporter({
+        mlApp: 'test',
+        apiKey: 'test-key',
+        scoringContextRetentionMs: retentionMs,
+      });
       const rootSpan = createMockSpan({
         id: 'root',
         traceId: 'trace-cleanup',
@@ -1141,8 +1150,8 @@ describe('DatadogExporter', () => {
       // Verify traceState exists before cleanup
       expect((exporter as any).traceState.has('trace-cleanup')).toBe(true);
 
-      // Advance timer by 60 seconds (cleanup delay)
-      await vi.advanceTimersByTimeAsync(60_000);
+      // Advance timer by configured retention time (cleanup delay)
+      await vi.advanceTimersByTimeAsync(retentionMs + 1000);
 
       // Verify traceState is cleaned up
       expect((exporter as any).traceState.has('trace-cleanup')).toBe(false);
@@ -1150,7 +1159,12 @@ describe('DatadogExporter', () => {
     });
 
     it('clears traceContext on cleanup', async () => {
-      const exporter = new DatadogExporter({ mlApp: 'test', apiKey: 'test-key' });
+      const retentionMs = 60_000; // Use shorter retention for test
+      const exporter = new DatadogExporter({
+        mlApp: 'test',
+        apiKey: 'test-key',
+        scoringContextRetentionMs: retentionMs,
+      });
       const rootSpan = createMockSpan({
         id: 'root',
         traceId: 'trace-ctx-cleanup',
@@ -1166,15 +1180,20 @@ describe('DatadogExporter', () => {
 
       await exporter.exportTracingEvent(createTracingEvent(TracingEventType.SPAN_ENDED, rootSpan));
 
-      // Advance timer
-      await vi.advanceTimersByTimeAsync(60_000);
+      // Advance timer by configured retention time
+      await vi.advanceTimersByTimeAsync(retentionMs + 1000);
 
       // Both traceState and traceContext should be cleaned
       expect((exporter as any).traceContext.has('trace-ctx-cleanup')).toBe(false);
     });
 
     it('does not leak state between traces after cleanup', async () => {
-      const exporter = new DatadogExporter({ mlApp: 'test', apiKey: 'test-key' });
+      const retentionMs = 60_000; // Use shorter retention for test
+      const exporter = new DatadogExporter({
+        mlApp: 'test',
+        apiKey: 'test-key',
+        scoringContextRetentionMs: retentionMs,
+      });
 
       // First trace
       const trace1 = createMockSpan({
@@ -1187,8 +1206,8 @@ describe('DatadogExporter', () => {
       await exporter.exportTracingEvent(createTracingEvent(TracingEventType.SPAN_STARTED, trace1));
       await exporter.exportTracingEvent(createTracingEvent(TracingEventType.SPAN_ENDED, trace1));
 
-      // Cleanup first trace
-      await vi.advanceTimersByTimeAsync(60_000);
+      // Cleanup first trace (using configured retention time)
+      await vi.advanceTimersByTimeAsync(retentionMs + 1000);
 
       // Second trace with same traceId (simulating trace ID reuse)
       const trace2 = createMockSpan({
@@ -1244,7 +1263,12 @@ describe('DatadogExporter', () => {
     });
 
     it('cancels max lifetime timer when normal cleanup runs', async () => {
-      const exporter = new DatadogExporter({ mlApp: 'test', apiKey: 'test-key' });
+      const retentionMs = 60_000; // Use shorter retention for test
+      const exporter = new DatadogExporter({
+        mlApp: 'test',
+        apiKey: 'test-key',
+        scoringContextRetentionMs: retentionMs,
+      });
 
       const rootSpan = createMockSpan({
         id: 'root',
@@ -1259,8 +1283,8 @@ describe('DatadogExporter', () => {
       const state = (exporter as any).traceState.get('trace-normal-cleanup');
       expect(state?.maxLifetimeTimer).toBeDefined();
 
-      // Advance to normal cleanup (60 seconds)
-      await vi.advanceTimersByTimeAsync(60_000);
+      // Advance to normal cleanup (using configured retention time)
+      await vi.advanceTimersByTimeAsync(retentionMs + 1000);
 
       // State should be cleaned up by normal cleanup
       expect((exporter as any).traceState.has('trace-normal-cleanup')).toBe(false);
@@ -1341,6 +1365,54 @@ describe('DatadogExporter', () => {
       });
 
       expect(mockSubmitEvaluation).not.toHaveBeenCalled();
+    });
+
+    it('retains context for scoring using configurable retention time', async () => {
+      vi.useFakeTimers();
+      const fiveMinutes = 5 * 60 * 1000;
+      const exporter = new DatadogExporter({
+        mlApp: 'test',
+        apiKey: 'test-key',
+        scoringContextRetentionMs: fiveMinutes, // 5 minutes instead of default 30 minutes
+      });
+      const span = createMockSpan({ id: 'span-retention', traceId: 'trace-retention', isRootSpan: true });
+
+      await exporter.exportTracingEvent(createTracingEvent(TracingEventType.SPAN_ENDED, span));
+      mockSubmitEvaluation.mockClear();
+
+      // Advance past old hardcoded 60s limit but within custom 5 minute retention
+      vi.advanceTimersByTime(90_000); // 90 seconds
+
+      // Scoring should still work
+      await exporter.addScoreToTrace({
+        traceId: 'trace-retention',
+        spanId: 'span-retention',
+        score: 0.85,
+        scorerName: 'delayed_scorer',
+      });
+
+      expect(mockSubmitEvaluation).toHaveBeenCalledWith(
+        expect.objectContaining({ spanId: 'mock-dd-span-1' }),
+        expect.objectContaining({ label: 'delayed_scorer', value: 0.85 }),
+      );
+
+      // Now advance past the custom retention time
+      vi.advanceTimersByTime(fiveMinutes);
+
+      // Context should be cleaned up now
+      mockSubmitEvaluation.mockClear();
+      await exporter.addScoreToTrace({
+        traceId: 'trace-retention',
+        spanId: 'span-retention',
+        score: 0.5,
+        scorerName: 'too_late_scorer',
+      });
+
+      // Should not have been called since context was cleaned up
+      expect(mockSubmitEvaluation).not.toHaveBeenCalled();
+
+      vi.useRealTimers();
+      await exporter.shutdown();
     });
   });
 
@@ -1425,6 +1497,34 @@ describe('DatadogExporter', () => {
           pendingCount: 1,
         }),
       );
+    });
+
+    it('allows re-initialization after shutdown (resets tracerInitFlag)', async () => {
+      // First exporter - llmobs.enable() should be called
+      const initialCallCount = mockEnable.mock.calls.length;
+      const exporter1 = new DatadogExporter({ mlApp: 'test', apiKey: 'test-key' });
+
+      // Should have called enable once
+      expect(mockEnable).toHaveBeenCalledTimes(initialCallCount + 1);
+
+      // Shutdown the first exporter - should reset tracerInitFlag
+      await exporter1.shutdown();
+
+      // Create a new exporter - should call llmobs.enable() again
+      const exporter2 = new DatadogExporter({ mlApp: 'test-reinit', apiKey: 'test-key-2' });
+
+      // Should have called enable twice total
+      expect(mockEnable).toHaveBeenCalledTimes(initialCallCount + 2);
+
+      // Verify the second call used the new config
+      expect(mockEnable).toHaveBeenLastCalledWith(
+        expect.objectContaining({
+          mlApp: 'test-reinit',
+        }),
+      );
+
+      // Clean up
+      await exporter2.shutdown();
     });
   });
 
@@ -1739,7 +1839,9 @@ describe('DatadogExporter', () => {
       expect(annotateCall.metadata).not.toHaveProperty('model');
       expect(annotateCall.metadata).not.toHaveProperty('provider');
       expect(annotateCall.metadata).not.toHaveProperty('usage');
-      expect(annotateCall.metadata).not.toHaveProperty('parameters');
+      // parameters ARE forwarded to metadata (temperature, topP, etc.)
+      // so users can see model configuration in Datadog traces
+      expect(annotateCall.metadata).toHaveProperty('parameters');
     });
 
     it('handles spans without attributes gracefully', async () => {
@@ -1790,7 +1892,12 @@ describe('DatadogExporter', () => {
     });
 
     it('cancels cleanup timer when new span arrives for same trace', async () => {
-      const exporter = new DatadogExporter({ mlApp: 'test', apiKey: 'test-key' });
+      const retentionMs = 60_000; // Use shorter retention for test
+      const exporter = new DatadogExporter({
+        mlApp: 'test',
+        apiKey: 'test-key',
+        scoringContextRetentionMs: retentionMs,
+      });
 
       const rootSpan = createMockSpan({
         id: 'root',
@@ -1806,7 +1913,7 @@ describe('DatadogExporter', () => {
       let state = (exporter as any).traceState.get('trace-reactivate');
       expect(state?.cleanupTimer).toBeDefined();
 
-      // Advance time partially (not full 60s)
+      // Advance time partially (not full retention time)
       await vi.advanceTimersByTimeAsync(30_000);
 
       // State should still exist
@@ -1826,8 +1933,8 @@ describe('DatadogExporter', () => {
       // The late child should have been emitted and a new timer scheduled
       expect(mockTrace).toHaveBeenCalledTimes(2);
 
-      // Complete the full 60s from the new timer
-      await vi.advanceTimersByTimeAsync(60_000);
+      // Complete the full retention time from the new timer
+      await vi.advanceTimersByTimeAsync(retentionMs + 1000);
 
       // Now state should be cleaned up
       expect((exporter as any).traceState.has('trace-reactivate')).toBe(false);

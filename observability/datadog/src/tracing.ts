@@ -12,12 +12,12 @@
  * - Supports both agent and agentless modes
  */
 
-import tracer from 'dd-trace';
 import type { TracingEvent, AnyExportedSpan, ModelGenerationAttributes } from '@mastra/core/observability';
 import { SpanType } from '@mastra/core/observability';
 import { omitKeys } from '@mastra/core/utils';
 import { BaseExporter } from '@mastra/observability';
 import type { BaseExporterConfig } from '@mastra/observability';
+import tracer from 'dd-trace';
 
 /**
  * LLMObs span options with required name and kind properties.
@@ -70,6 +70,11 @@ export interface DatadogExporterConfig extends BaseExporterConfig {
   /**
    * Datadog API key. Required (agentless mode is the default).
    * Falls back to DD_API_KEY environment variable.
+   *
+   * **WARNING**: When provided, this value is written to `process.env.DD_API_KEY`
+   * because dd-trace only accepts API key via environment variables. This affects
+   * the entire Node.js process. If multiple Datadog instances or other code reads
+   * DD_API_KEY, they will see this value.
    */
   apiKey?: string;
 
@@ -82,6 +87,11 @@ export interface DatadogExporterConfig extends BaseExporterConfig {
   /**
    * Datadog site (e.g., 'datadoghq.com', 'datadoghq.eu').
    * Falls back to DD_SITE environment variable, defaults to 'datadoghq.com'.
+   *
+   * **WARNING**: When provided, this value is written to `process.env.DD_SITE`
+   * because dd-trace only accepts site via environment variables. This affects
+   * the entire Node.js process. If multiple Datadog instances or other code reads
+   * DD_SITE, they will see this value.
    */
   site?: string;
 
@@ -120,6 +130,14 @@ export interface DatadogExporterConfig extends BaseExporterConfig {
    * Default session ID applied to all spans if not specified in metadata.
    */
   defaultSessionId?: string;
+
+  /**
+   * How long to retain trace context for scoring after the root span ends (in milliseconds).
+   * This allows addScoreToTrace() to be called for delayed/async feedback (e.g., human feedback,
+   * batch evaluations). Defaults to 30 minutes (MAX_TRACE_LIFETIME_MS).
+   * Set to a higher value if your scoring pipeline has longer delays.
+   */
+  scoringContextRetentionMs?: number;
 }
 
 /**
@@ -336,7 +354,15 @@ export class DatadogExporter extends BaseExporter {
       return;
     }
 
-    this.config = { ...config, mlApp, site, apiKey, agentless };
+    this.config = {
+      ...config,
+      mlApp,
+      site,
+      apiKey,
+      agentless,
+      // Default to MAX_TRACE_LIFETIME_MS for scoring retention if not specified
+      scoringContextRetentionMs: config.scoringContextRetentionMs ?? MAX_TRACE_LIFETIME_MS,
+    };
 
     // Initialize tracer and enable LLM Observability
     ensureTracer({
@@ -362,12 +388,13 @@ export class DatadogExporter extends BaseExporter {
       const span = event.exportedSpan;
 
       // Handle event spans (zero-duration spans) - buffer like regular spans for parent-first emission
+      // Note: Core emits SPAN_ENDED for event spans (they are complete at creation time)
       if (span.isEvent) {
-        if (event.type === 'span_started') {
+        if (event.type === 'span_ended') {
           this.captureTraceContext(span);
           this.enqueueSpan(span); // Route through buffer for proper parent context
         }
-        return; // Skip span_updated and span_ended for events
+        return; // Skip span_started and span_updated for events
       }
 
       // Handle regular spans based on event type
@@ -445,7 +472,9 @@ export class DatadogExporter extends BaseExporter {
 
     // Forward span.attributes to metadata (minus known fields handled separately)
     // This ensures tool/workflow spans preserve custom attributes like other exporters
-    const knownFields = ['usage', 'model', 'provider', 'parameters'];
+    // Note: 'parameters' is NOT excluded - model parameters (temperature, topP, etc.)
+    // should be forwarded to metadata for visibility in Datadog traces
+    const knownFields = ['usage', 'model', 'provider'];
     const otherAttributes = omitKeys((span.attributes ?? {}) as Record<string, any>, knownFields);
 
     // Merge span.metadata + remaining attributes into metadata
@@ -501,13 +530,14 @@ export class DatadogExporter extends BaseExporter {
       return;
     }
 
-    const exported = ctx.exported ?? (tracer.llmobs.exportSpan ? tracer.llmobs.exportSpan(ctx.ddSpan) : undefined);
-    if (!exported) {
-      this.logger.warn('Unable to export Datadog span context for evaluation', { traceId, spanId });
-      return;
-    }
-
     try {
+      // Export span context (may throw if span is in an invalid state)
+      const exported = ctx.exported ?? (tracer.llmobs.exportSpan ? tracer.llmobs.exportSpan(ctx.ddSpan) : undefined);
+      if (!exported) {
+        this.logger.warn('Unable to export Datadog span context for evaluation', { traceId, spanId });
+        return;
+      }
+
       tracer.llmobs.submitEvaluation(exported, {
         label: scorerName,
         metricType: 'score',
@@ -568,6 +598,9 @@ export class DatadogExporter extends BaseExporter {
     if (tracer.llmobs?.disable) {
       try {
         tracer.llmobs.disable();
+        // Reset init flag to allow re-initialization with a new exporter instance
+        // (important for hot reload, test isolation, and graceful restarts)
+        tracerInitFlag.done = false;
       } catch (e) {
         this.logger.error('Error disabling llmobs', { error: e });
       }
@@ -652,6 +685,9 @@ export class DatadogExporter extends BaseExporter {
     } while (emitted);
 
     if (state.rootEnded && state.buffer.size === 0 && !state.cleanupTimer) {
+      // Use configurable retention time for scoring contexts (default: 30 minutes)
+      // This allows addScoreToTrace() to work for async feedback pipelines
+      const retentionMs = this.config.scoringContextRetentionMs ?? MAX_TRACE_LIFETIME_MS;
       const timer = setTimeout(() => {
         // Log warning if cleanup discards orphaned spans (parent never arrived)
         const currentState = this.traceState.get(traceId);
@@ -670,7 +706,7 @@ export class DatadogExporter extends BaseExporter {
         }
         this.traceState.delete(traceId);
         this.traceContext.delete(traceId);
-      }, 60_000);
+      }, retentionMs);
       // Prevent the timer from keeping the process alive
       (timer as any).unref?.();
       state.cleanupTimer = timer;
