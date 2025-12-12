@@ -51,8 +51,17 @@ type TraceState = {
   buffer: Map<string, AnyExportedSpan>;
   contexts: Map<string, { ddSpan: any; exported?: { traceId: string; spanId: string } }>;
   rootEnded: boolean;
+  createdAt: number;
   cleanupTimer?: ReturnType<typeof setTimeout>;
+  maxLifetimeTimer?: ReturnType<typeof setTimeout>;
 };
+
+/**
+ * Maximum lifetime for a trace state entry (30 minutes).
+ * This is a fallback cleanup mechanism for traces that never receive a root span
+ * or have all spans marked as non-root, preventing unbounded memory growth.
+ */
+const MAX_TRACE_LIFETIME_MS = 30 * 60 * 1000;
 
 /**
  * Configuration options for the Datadog LLM Observability exporter.
@@ -158,10 +167,12 @@ function ensureTracer(config: {
 
   // Set environment variables for dd-trace to pick up
   // (LLMObsEnableOptions only accepts mlApp and agentlessEnabled)
-  if (config.site && !process.env.DD_SITE) {
+  // Always set when config is provided to ensure explicit config takes precedence
+  // over any stale env vars that may already be set in the process
+  if (config.site) {
     process.env.DD_SITE = config.site;
   }
-  if (config.apiKey && !process.env.DD_API_KEY) {
+  if (config.apiKey) {
     process.env.DD_API_KEY = config.apiKey;
   }
 
@@ -238,61 +249,38 @@ function normalizeUsage(usage?: ModelGenerationAttributes['usage']): Record<stri
 }
 
 /**
- * Formats input data for Datadog annotations.
+ * Formats input/output data for Datadog annotations.
  * LLM spans use message array format; others use raw or stringified data.
+ *
+ * @param data - The input or output data to format
+ * @param spanType - The Mastra span type
+ * @param role - The message role ('user' for input, 'assistant' for output)
  */
-function formatInput(input: any, spanType: SpanType): any {
+function formatDataForAnnotation(data: any, spanType: SpanType, role: 'user' | 'assistant'): any {
   // LLM spans expect {role, content}[] format
   if (spanType === SpanType.MODEL_GENERATION || spanType === SpanType.MODEL_STEP) {
-    // Already in message format
-    if (Array.isArray(input) && input.every(m => m?.role && m?.content !== undefined)) {
-      return input.map(m => ({
+    // Already in message format - preserve existing roles
+    if (Array.isArray(data) && data.every(m => m?.role && m?.content !== undefined)) {
+      return data.map(m => ({
         role: m.role,
         content: typeof m.content === 'string' ? m.content : safeStringify(m.content),
       }));
     }
-    // String input becomes user message
-    if (typeof input === 'string') {
-      return [{ role: 'user', content: input }];
+    // String becomes a message with the specified role
+    if (typeof data === 'string') {
+      return [{ role, content: data }];
     }
-    // Object input gets stringified as user message
-    return [{ role: 'user', content: safeStringify(input) }];
+    // For output: check for .text property (common AI SDK format)
+    if (role === 'assistant' && data?.text) {
+      return [{ role, content: data.text }];
+    }
+    // Object gets stringified as message
+    return [{ role, content: safeStringify(data) }];
   }
 
   // Non-LLM spans: pass through strings/arrays, stringify objects
-  if (typeof input === 'string' || Array.isArray(input)) return input;
-  return safeStringify(input);
-}
-
-/**
- * Formats output data for Datadog annotations.
- * LLM spans use message array format; others use raw or stringified data.
- */
-function formatOutput(output: any, spanType: SpanType): any {
-  // LLM spans expect {role, content}[] format
-  if (spanType === SpanType.MODEL_GENERATION || spanType === SpanType.MODEL_STEP) {
-    // Already in message format
-    if (Array.isArray(output) && output.every(m => m?.role && m?.content !== undefined)) {
-      return output.map(m => ({
-        role: m.role,
-        content: typeof m.content === 'string' ? m.content : safeStringify(m.content),
-      }));
-    }
-    // String output becomes assistant message
-    if (typeof output === 'string') {
-      return [{ role: 'assistant', content: output }];
-    }
-    // Object with text property (common AI SDK format)
-    if (output?.text) {
-      return [{ role: 'assistant', content: output.text }];
-    }
-    // Other objects get stringified as assistant message
-    return [{ role: 'assistant', content: safeStringify(output) }];
-  }
-
-  // Non-LLM spans: pass through strings, stringify objects
-  if (typeof output === 'string') return output;
-  return safeStringify(output);
+  if (typeof data === 'string' || Array.isArray(data)) return data;
+  return safeStringify(data);
 }
 
 /**
@@ -440,12 +428,12 @@ export class DatadogExporter extends BaseExporter {
 
     // Format and add input (dd-trace expects 'inputData')
     if (span.input !== undefined) {
-      annotations.inputData = formatInput(span.input, span.type);
+      annotations.inputData = formatDataForAnnotation(span.input, span.type, 'user');
     }
 
     // Format and add output (dd-trace expects 'outputData')
     if (span.output !== undefined) {
-      annotations.outputData = formatOutput(span.output, span.type);
+      annotations.outputData = formatDataForAnnotation(span.output, span.type, 'assistant');
     }
 
     // Normalize and add token usage metrics
@@ -470,6 +458,8 @@ export class DatadogExporter extends BaseExporter {
     }
 
     // Tags only for error info (structural data the exporter knows about)
+    // Note: Datadog annotation tags are string key/values, so error is 'true' (string).
+    // The native span error status is set separately via ddSpan.setTag('error', true) in emitSpan().
     // TODO: add config option to allow user tags to be added to the annotations.tags object
     if (span.errorInfo) {
       annotations.tags = {
@@ -546,6 +536,9 @@ export class DatadogExporter extends BaseExporter {
       if (state.cleanupTimer) {
         clearTimeout(state.cleanupTimer);
       }
+      if (state.maxLifetimeTimer) {
+        clearTimeout(state.maxLifetimeTimer);
+      }
       if (state.buffer.size > 0) {
         this.logger.warn('Shutdown with pending spans', {
           traceId,
@@ -599,12 +592,39 @@ export class DatadogExporter extends BaseExporter {
       return existing;
     }
 
-    const created = {
+    const created: TraceState = {
       buffer: new Map<string, AnyExportedSpan>(),
       contexts: new Map<string, { ddSpan: any; exported?: { traceId: string; spanId: string } }>(),
       rootEnded: false,
-      cleanupTimer: undefined as ReturnType<typeof setTimeout> | undefined,
+      createdAt: Date.now(),
+      cleanupTimer: undefined,
+      maxLifetimeTimer: undefined,
     };
+
+    // Schedule fallback cleanup after max lifetime to prevent memory leaks
+    // when traces never receive a root span or all spans are non-root
+    const maxLifetimeTimer = setTimeout(() => {
+      const state = this.traceState.get(traceId);
+      if (state) {
+        if (state.buffer.size > 0 || state.contexts.size > 0) {
+          this.logger.warn('Discarding trace due to max lifetime exceeded', {
+            traceId,
+            bufferedSpans: state.buffer.size,
+            emittedSpans: state.contexts.size,
+            lifetimeMs: Date.now() - state.createdAt,
+          });
+        }
+        if (state.cleanupTimer) {
+          clearTimeout(state.cleanupTimer);
+        }
+        this.traceState.delete(traceId);
+        this.traceContext.delete(traceId);
+      }
+    }, MAX_TRACE_LIFETIME_MS);
+    // Prevent the timer from keeping the process alive
+    (maxLifetimeTimer as any).unref?.();
+    created.maxLifetimeTimer = maxLifetimeTimer;
+
     this.traceState.set(traceId, created);
     return created;
   }
@@ -635,12 +655,18 @@ export class DatadogExporter extends BaseExporter {
       const timer = setTimeout(() => {
         // Log warning if cleanup discards orphaned spans (parent never arrived)
         const currentState = this.traceState.get(traceId);
-        if (currentState && currentState.buffer.size > 0) {
-          this.logger.warn('Discarding orphaned spans during cleanup', {
-            traceId,
-            orphanedCount: currentState.buffer.size,
-            spanIds: Array.from(currentState.buffer.keys()),
-          });
+        if (currentState) {
+          if (currentState.buffer.size > 0) {
+            this.logger.warn('Discarding orphaned spans during cleanup', {
+              traceId,
+              orphanedCount: currentState.buffer.size,
+              spanIds: Array.from(currentState.buffer.keys()),
+            });
+          }
+          // Clear the max lifetime timer since normal cleanup is handling this
+          if (currentState.maxLifetimeTimer) {
+            clearTimeout(currentState.maxLifetimeTimer);
+          }
         }
         this.traceState.delete(traceId);
         this.traceContext.delete(traceId);

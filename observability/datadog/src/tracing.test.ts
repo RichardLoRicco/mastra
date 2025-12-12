@@ -1207,6 +1207,70 @@ describe('DatadogExporter', () => {
         expect.any(Function),
       );
     });
+
+    it('cleans up traces without root span after max lifetime (30 minutes)', async () => {
+      const exporter = new DatadogExporter({ mlApp: 'test', apiKey: 'test-key' });
+      const loggerSpy = vi.spyOn((exporter as any).logger, 'warn');
+
+      // Create a non-root span (simulating a trace where root span never arrives)
+      const orphanedSpan = createMockSpan({
+        id: 'orphaned',
+        traceId: 'trace-no-root',
+        isRootSpan: false, // Not a root span
+        parentSpanId: 'missing-parent', // Parent never arrives
+      });
+
+      // End the span - it will be buffered waiting for parent
+      await exporter.exportTracingEvent(createTracingEvent(TracingEventType.SPAN_ENDED, orphanedSpan));
+
+      // Verify state exists and span is buffered
+      expect((exporter as any).traceState.has('trace-no-root')).toBe(true);
+      expect((exporter as any).traceState.get('trace-no-root').buffer.size).toBe(1);
+
+      // Advance time by 30 minutes (max lifetime)
+      await vi.advanceTimersByTimeAsync(30 * 60 * 1000);
+
+      // Verify state was cleaned up
+      expect((exporter as any).traceState.has('trace-no-root')).toBe(false);
+
+      // Verify warning was logged
+      expect(loggerSpy).toHaveBeenCalledWith(
+        'Discarding trace due to max lifetime exceeded',
+        expect.objectContaining({
+          traceId: 'trace-no-root',
+          bufferedSpans: 1,
+        }),
+      );
+    });
+
+    it('cancels max lifetime timer when normal cleanup runs', async () => {
+      const exporter = new DatadogExporter({ mlApp: 'test', apiKey: 'test-key' });
+
+      const rootSpan = createMockSpan({
+        id: 'root',
+        traceId: 'trace-normal-cleanup',
+        isRootSpan: true,
+      });
+
+      await exporter.exportTracingEvent(createTracingEvent(TracingEventType.SPAN_STARTED, rootSpan));
+      await exporter.exportTracingEvent(createTracingEvent(TracingEventType.SPAN_ENDED, rootSpan));
+
+      // Verify state exists with max lifetime timer
+      const state = (exporter as any).traceState.get('trace-normal-cleanup');
+      expect(state?.maxLifetimeTimer).toBeDefined();
+
+      // Advance to normal cleanup (60 seconds)
+      await vi.advanceTimersByTimeAsync(60_000);
+
+      // State should be cleaned up by normal cleanup
+      expect((exporter as any).traceState.has('trace-normal-cleanup')).toBe(false);
+
+      // Advance to max lifetime - should not cause any issues since state is already gone
+      await vi.advanceTimersByTimeAsync(30 * 60 * 1000);
+
+      // No errors should occur
+      expect((exporter as any).traceState.has('trace-normal-cleanup')).toBe(false);
+    });
   });
 
   describe('scoring (addScoreToTrace)', () => {
